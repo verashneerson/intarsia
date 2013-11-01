@@ -1,0 +1,241 @@
+/* Welcome to Compass.
+ * In this file you should write your main styles. (or centralize your imports)
+ * Import this file using the following HTML or equivalent:
+ * <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css" /> */
+/* line 10, ../sass/screen.scss */
+#intarsia {
+  position: relative;
+  overflow: hidden;
+  margin: 2em;
+}
+
+/* line 16, ../sass/screen.scss */
+#intarsia .intarsia-palette {
+  margin: 0 0 20px;
+}
+
+/* line 20, ../sass/screen.scss */
+#intarsia .intarsia-grid {
+  position: relative;
+  overflow: hidden;
+  list-style: none;
+  padding: 7px 0 0 0;
+  margin: 0;
+  clear: both;
+}
+
+/* line 29, ../sass/screen.scss */
+#intarsia .pattern-row {
+  position: relative;
+  float: left;
+  padding: 0;
+  margin: -7px 0 0 0;
+  clear: left;
+}
+
+/* line 39, ../sass/screen.scss */
+#intarsia .tenth .stitch-holder {
+  #border-bottom-color: #999;
+}
+
+/* line 42, ../sass/screen.scss */
+#intarsia .stitch-holder {
+  position: relative;
+  float: left;
+  width: 20px;
+  height: 20px;
+}
+
+/* line 53, ../sass/screen.scss */
+#intarsia .stitch {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  -moz-transition: all 0.25s ease-in-out;
+  -o-transition: all 0.25s ease-in-out;
+  -webkit-transition: all 0.25s ease-in-out;
+  transition: all 0.25s ease-in-out;
+  /* colors for paintcolors */
+}
+/* line 58, ../sass/screen.scss */
+#intarsia .stitch .svg-background {
+  fill: #fcfcfc;
+  transition-property: fill;
+  transition-duration: .25s;
+}
+/* line 63, ../sass/screen.scss */
+#intarsia .stitch .svg-border {
+  fill: #ccc;
+}
+/* line 66, ../sass/screen.scss */
+#intarsia .stitch:hover .svg-background {
+  fill: #ddd;
+}
+/* line 72, ../sass/screen.scss */
+#intarsia .stitch.red .svg-background {
+  fill: red;
+}
+/* line 73, ../sass/screen.scss */
+#intarsia .stitch.red .svg-border {
+  fill: #cc0000;
+}
+/* line 72, ../sass/screen.scss */
+#intarsia .stitch.orange .svg-background {
+  fill: orange;
+}
+/* line 73, ../sass/screen.scss */
+#intarsia .stitch.orange .svg-border {
+  fill: #cc8400;
+}
+/* line 72, ../sass/screen.scss */
+#intarsia .stitch.yellow .svg-background {
+  fill: yellow;
+}
+/* line 73, ../sass/screen.scss */
+#intarsia .stitch.yellow .svg-border {
+  fill: #cccc00;
+}
+/* line 72, ../sass/screen.scss */
+#intarsia .stitch.green .svg-background {
+  fill: green;
+}
+/* line 73, ../sass/screen.scss */
+#intarsia .stitch.green .svg-border {
+  fill: #004d00;
+}
+/* line 72, ../sass/screen.scss */
+#intarsia .stitch.blue .svg-background {
+  fill: blue;
+}
+/* line 73, ../sass/screen.scss */
+#intarsia .stitch.blue .svg-border {
+  fill: #0000cc;
+}
+/* line 72, ../sass/screen.scss */
+#intarsia .stitch.navy .svg-background {
+  fill: navy;
+}
+/* line 73, ../sass/screen.scss */
+#intarsia .stitch.navy .svg-border {
+  fill: #00004d;
+}
+/* line 72, ../sass/screen.scss */
+#intarsia .stitch.purple .svg-background {
+  fill: purple;
+}
+/* line 73, ../sass/screen.scss */
+#intarsia .stitch.purple .svg-border {
+  fill: #4d004d;
+}
+/* line 72, ../sass/screen.scss */
+#intarsia .stitch.white .svg-background {
+  fill: white;
+}
+/* line 73, ../sass/screen.scss */
+#intarsia .stitch.white .svg-border {
+  fill: #e6e6e6;
+}
+/* line 72, ../sass/screen.scss */
+#intarsia .stitch.silver .svg-background {
+  fill: silver;
+}
+/* line 73, ../sass/screen.scss */
+#intarsia .stitch.silver .svg-border {
+  fill: #a7a7a7;
+}
+/* line 72, ../sass/screen.scss */
+#intarsia .stitch.grey .svg-background {
+  fill: grey;
+}
+/* line 73, ../sass/screen.scss */
+#intarsia .stitch.grey .svg-border {
+  fill: #676767;
+}
+/* line 72, ../sass/screen.scss */
+#intarsia .stitch.black .svg-background {
+  fill: black;
+}
+/* line 73, ../sass/screen.scss */
+#intarsia .stitch.black .svg-border {
+  fill: black;
+}
+
+/* line 78, ../sass/screen.scss */
+#intarsia .palette-color {
+  position: relative;
+  float: left;
+  width: 20px;
+  height: 20px;
+  border: 1px solid #ccc;
+  background-color: #fcfcfc;
+  padding: 0;
+  margin: 0 5px 0 0;
+  list-style-type: none;
+  /* colors for paintcolors */
+}
+/* line 88, ../sass/screen.scss */
+#intarsia .palette-color.selected {
+  border-color: black !important;
+}
+/* line 92, ../sass/screen.scss */
+#intarsia .palette-color.red {
+  background: red;
+  border-color: #cc0000;
+}
+/* line 92, ../sass/screen.scss */
+#intarsia .palette-color.orange {
+  background: orange;
+  border-color: #cc8400;
+}
+/* line 92, ../sass/screen.scss */
+#intarsia .palette-color.yellow {
+  background: yellow;
+  border-color: #cccc00;
+}
+/* line 92, ../sass/screen.scss */
+#intarsia .palette-color.green {
+  background: green;
+  border-color: #004d00;
+}
+/* line 92, ../sass/screen.scss */
+#intarsia .palette-color.blue {
+  background: blue;
+  border-color: #0000cc;
+}
+/* line 92, ../sass/screen.scss */
+#intarsia .palette-color.navy {
+  background: navy;
+  border-color: #00004d;
+}
+/* line 92, ../sass/screen.scss */
+#intarsia .palette-color.purple {
+  background: purple;
+  border-color: #4d004d;
+}
+/* line 92, ../sass/screen.scss */
+#intarsia .palette-color.white {
+  background: white;
+  border-color: #e6e6e6;
+}
+/* line 92, ../sass/screen.scss */
+#intarsia .palette-color.silver {
+  background: silver;
+  border-color: #a7a7a7;
+}
+/* line 92, ../sass/screen.scss */
+#intarsia .palette-color.grey {
+  background: grey;
+  border-color: #676767;
+}
+/* line 92, ../sass/screen.scss */
+#intarsia .palette-color.black {
+  background: black;
+  border-color: black;
+}
+/* line 97, ../sass/screen.scss */
+#intarsia .palette-color a {
+  display: block;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
