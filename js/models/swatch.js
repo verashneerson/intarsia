@@ -11,12 +11,14 @@ Intarsia.Models.Swatch = (function(_super) {
     return _ref;
   }
 
-  Swatch.prototype.defaults = {
-    color: 'default'
+  Swatch.prototype.defaults = function() {
+    return {
+      color: 'default'
+    };
   };
 
   Swatch.prototype.initialize = function() {
-    return this.options = _.extend({}, this.defaults, this.options);
+    return this.options = _.extend({}, this.defaults(), this.options);
   };
 
   return Swatch;

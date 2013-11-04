@@ -11,13 +11,31 @@ Intarsia.Models.Stitch = (function(_super) {
     return _ref;
   }
 
-  Stitch.prototype.defaults = {
-    color: 'default',
-    row: 0
+  Stitch.prototype.defaults = function() {
+    return {
+      color: 'default',
+      row: 0
+    };
   };
 
   Stitch.prototype.initialize = function() {
-    return this.options = _.extend({}, this.defaults, this.options);
+    return this.options = _.extend({}, this.defaults(), this.options);
+  };
+
+  Stitch.prototype.paint = function(color) {
+    if (this.get('color') === color) {
+      return this.erase();
+    } else {
+      return this.set({
+        color: color
+      });
+    }
+  };
+
+  Stitch.prototype.erase = function() {
+    return this.set({
+      color: this.defaults().color
+    });
   };
 
   return Stitch;

@@ -27,18 +27,24 @@
     </div>
     </script>
 
+    <script type="text/mustache" id="swatch-template">
+      <a class='{{ color }}' href='#'></a>
+    </script>
+
     <!-- vendor -->
-    <script type="text/javascript" src="/js/vendor/jquery.min.js"></script>
-    <script type="text/javascript" src="/js/vendor/underscore.min.js"></script>
-    <script type="text/javascript" src="/js/vendor/backbone.min.js"></script>
-    <script type="text/javascript" src="/js/vendor/backbone-validation.js"></script>
-    <script type="text/javascript "src="/js/vendor/hogan.js"></script>
+    <script type="text/javascript" src="/vendor/jquery.min.js"></script>
+    <script type="text/javascript" src="/vendor/underscore.min.js"></script>
+    <script type="text/javascript" src="/vendor/backbone.min.js"></script>
+    <script type="text/javascript" src="/vendor/backbone-validation.js"></script>
+    <script type="text/javascript "src="/vendor/hogan.js"></script>
     <!-- app -->
     <script type="text/javascript "src="/js/app.js"></script>
     <script type="text/javascript "src="/js/models/stitch.js"></script>
+    <script type="text/javascript "src="/js/models/swatch.js"></script>
     <script type="text/javascript "src="/js/views/pattern.js"></script>
     <script type="text/javascript "src="/js/views/pattern_form.js"></script>
-    <script type="text/javascript "src="/js/views/palette.js"></script>
+    <script type="text/javascript "src="/js/views/swatch.js"></script>
+    <script type="text/javascript "src="/js/views/swatches.js"></script>
     <script type="text/javascript "src="/js/views/stitch.js"></script>
   </head>
   <body>
@@ -80,9 +86,7 @@
         </div>
         <div class="container">
           <div class="span-12">
-            <div id="intarsia">
-              <ul class="intarsia-palette clearfix"></ul>
-            </div>
+            <div id="intarsia"></div>
           </div>
         </div>
       </div>
@@ -91,6 +95,7 @@
       $(document).ready(function() {
         var pattern = new Intarsia.Views.Pattern({
           el: $('#intarsia'),
+          width: 30,
           height: 30
         });
       });

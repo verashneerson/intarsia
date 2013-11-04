@@ -12,8 +12,8 @@ Intarsia.Views.Stitch = (function(_super) {
     this.setBrushColor = __bind(this.setBrushColor, this);
     this.setDragging = __bind(this.setDragging, this);
     this.paintContinuous = __bind(this.paintContinuous, this);
-    this.paint = __bind(this.paint, this);
-    this.chooseColor = __bind(this.chooseColor, this);
+    this.recolor = __bind(this.recolor, this);
+    this.paintStitch = __bind(this.paintStitch, this);
     _ref = Stitch.__super__.constructor.apply(this, arguments);
     return _ref;
   }
@@ -22,22 +22,26 @@ Intarsia.Views.Stitch = (function(_super) {
 
   Stitch.prototype.tagName = 'div';
 
+  Stitch.prototype.className = 'stitch-holder';
+
   Stitch.prototype.template = $('#stitch-template').html();
 
-  Stitch.prototype.defaults = {
-    color: 'default'
+  Stitch.prototype.defaults = function() {
+    return {
+      color: 'default'
+    };
   };
 
   Stitch.prototype.events = {
-    'mousedown': 'chooseColor',
+    'mousedown': 'paintStitch',
     'mouseenter': 'paintContinuous'
   };
 
   Stitch.prototype.initialize = function() {
-    this.options = _.extend({}, this.defaults, this.options);
-    this.brushColor = this.defaultColor = this.defaults.color;
+    this.options = _.extend({}, this.defaults(), this.options);
+    this.brushColor = this.defaultColor = this.defaults().color;
     this.dragging = false;
-    this.model.on('change', this.paint, this);
+    this.model.on('change', this.recolor, this);
     events.on('palette:change', this.setBrushColor, this);
     events.on('mouse:dragging', this.setDragging, this);
     return events.on('pattern:reset', this.reset);
@@ -47,25 +51,17 @@ Intarsia.Views.Stitch = (function(_super) {
     return this.model.get('color');
   };
 
-  Stitch.prototype.setColor = function(color) {
-    return this.model.set({
-      color: color
-    });
+  Stitch.prototype.paintStitch = function(evt) {
+    return this.model.paint(this.brushColor);
   };
 
-  Stitch.prototype.chooseColor = function(evt) {
-    var color;
-    color = this.getColor() === this.brushColor ? this.defaultColor : this.brushColor;
-    return this.setColor(color);
-  };
-
-  Stitch.prototype.paint = function() {
+  Stitch.prototype.recolor = function() {
     return this.$el.find('.stitch').removeClass().addClass("stitch " + (this.getColor()));
   };
 
-  Stitch.prototype.paintContinuous = function(dragging) {
+  Stitch.prototype.paintContinuous = function() {
     if (this.dragging) {
-      return this.chooseColor();
+      return this.paintStitch();
     }
   };
 
@@ -78,12 +74,12 @@ Intarsia.Views.Stitch = (function(_super) {
   };
 
   Stitch.prototype.reset = function(evt) {
-    return this.setColor(this.defaultColor);
+    return this.model.erase();
   };
 
   Stitch.prototype.render = function() {
-    this.$el.addClass("stitch-holder").html(this.template);
-    return this.paint();
+    this.$el.html(this.template);
+    return this.recolor();
   };
 
   return Stitch;

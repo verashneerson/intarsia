@@ -8,7 +8,6 @@ Intarsia.Views.Pattern = (function(_super) {
   __extends(Pattern, _super);
 
   function Pattern() {
-    this.reset = __bind(this.reset, this);
     this.renderItem = __bind(this.renderItem, this);
     this.stopPaint = __bind(this.stopPaint, this);
     this.paint = __bind(this.paint, this);
@@ -22,9 +21,11 @@ Intarsia.Views.Pattern = (function(_super) {
 
   Pattern.prototype.templateRow = "<li class='pattern-row'></li>";
 
-  Pattern.prototype.defaults = {
-    width: 40,
-    height: 20
+  Pattern.prototype.defaults = function() {
+    return {
+      width: 40,
+      height: 20
+    };
   };
 
   Pattern.prototype.events = {
@@ -34,16 +35,13 @@ Intarsia.Views.Pattern = (function(_super) {
   };
 
   Pattern.prototype.initialize = function() {
-    this.options = _.extend({}, this.defaults, this.options);
-    this.palette = new Intarsia.Views.Palette({
-      el: this.$el.find('.intarsia-palette')[0]
-    });
+    this.options = _.extend({}, this.defaults(), this.options);
+    this.palette = new Intarsia.Views.Swatches();
     this.form = new Intarsia.Views.PatternForm({
       el: $('#pattern-form')
     });
     this.generate(this.options.height, this.options.width);
-    this.collection.on('reset', this.render, this);
-    return events.on('pattern:reset', this.reset, this);
+    return this.collection.on('reset', this.render, this);
   };
 
   Pattern.prototype.generate = function(rows, cols) {
@@ -79,6 +77,7 @@ Intarsia.Views.Pattern = (function(_super) {
 
   Pattern.prototype.render = function() {
     var item, row, rowColl, rowEl, uniqueRows, _i, _j, _len;
+    this.$el.append(this.palette.el);
     uniqueRows = _.uniq(this.collection.pluck('row')).length || 0;
     for (row = _i = 0; 0 <= uniqueRows ? _i <= uniqueRows : _i >= uniqueRows; row = 0 <= uniqueRows ? ++_i : --_i) {
       rowColl = this.collection.where({
@@ -92,11 +91,6 @@ Intarsia.Views.Pattern = (function(_super) {
       this.template.append(rowEl);
     }
     this.$el.append(this.template);
-    return this.palette.setDefaultColor();
-  };
-
-  Pattern.prototype.reset = function() {
-    console.log("reset");
     return this.palette.setDefaultColor();
   };
 
