@@ -44,9 +44,10 @@ Intarsia.Views.Swatch = (function(_super) {
   Swatch.prototype.render = function() {
     var color;
     color = this.model.get('color');
-    return this.$el.addClass(color).html(this.template.render({
+    this.$el.addClass(color).html(this.template.render({
       color: color
     }));
+    return this;
   };
 
   return Swatch;

@@ -22,3 +22,4 @@ class Intarsia.Views.Swatch extends Backbone.View
   render: ->
     color = @model.get 'color'
     @$el.addClass(color).html(@template.render color: color)
+    return this

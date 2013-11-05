@@ -79,7 +79,8 @@ Intarsia.Views.Stitch = (function(_super) {
 
   Stitch.prototype.render = function() {
     this.$el.html(this.template);
-    return this.recolor();
+    this.recolor();
+    return this;
   };
 
   return Stitch;

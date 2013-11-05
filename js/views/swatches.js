@@ -9,7 +9,6 @@ Intarsia.Views.Swatches = (function(_super) {
 
   function Swatches() {
     this.selectColor = __bind(this.selectColor, this);
-    this.setDefaultColor = __bind(this.setDefaultColor, this);
     _ref = Swatches.__super__.constructor.apply(this, arguments);
     return _ref;
   }
@@ -28,8 +27,9 @@ Intarsia.Views.Swatches = (function(_super) {
 
   Swatches.prototype.initialize = function() {
     var color, models, _i, _len, _ref1;
+    this.options = _.extend({}, this.defaults(), this.options);
     models = [];
-    _ref1 = this.defaults().colors;
+    _ref1 = this.options.colors;
     for (_i = 0, _len = _ref1.length; _i < _len; _i++) {
       color = _ref1[_i];
       models.push(new Intarsia.Models.Swatch({
@@ -37,13 +37,14 @@ Intarsia.Views.Swatches = (function(_super) {
       }));
     }
     this.collection = new Intarsia.Collections.Swatches(models);
-    this.render();
+    this.childViews = [];
+    this.collection.on('reset', this.resetCollection, this);
     events.on('palette:change', this.selectColor, this);
-    return events.on('pattern:reset', this.setDefaultColor, this);
+    return events.on('pattern:reset', this.resetCollection, this);
   };
 
-  Swatches.prototype.setDefaultColor = function(evt) {
-    return this.$el.find('.palette-color a')[0].click();
+  Swatches.prototype.setDefaultColor = function() {
+    return $(this.childViews[0].el).find('a').click();
   };
 
   Swatches.prototype.selectColor = function(color) {
@@ -51,19 +52,31 @@ Intarsia.Views.Swatches = (function(_super) {
     return this.$el.children("." + color).addClass('selected');
   };
 
+  Swatches.prototype.addSwatch = function(model) {
+    var swatch;
+    swatch = new Intarsia.Views.Swatch({
+      model: model
+    });
+    this.childViews.push(swatch);
+    return this.$el.append(swatch.render().el);
+  };
+
+  Swatches.prototype.resetCollection = function() {
+    var _this = this;
+    _(this.childViews).each(function(cv) {
+      cv.off();
+      return cv.remove();
+    });
+    this.childViews = [];
+    _(this.collection.models).each(function(model) {
+      return _this.addSwatch(model);
+    });
+    return this.setDefaultColor();
+  };
+
   Swatches.prototype.render = function() {
-    var item, swatch, _i, _len, _ref1, _results;
-    _ref1 = this.collection.models;
-    _results = [];
-    for (_i = 0, _len = _ref1.length; _i < _len; _i++) {
-      item = _ref1[_i];
-      swatch = new Intarsia.Views.Swatch({
-        model: item
-      });
-      swatch.render();
-      _results.push(this.$el.append(swatch.el));
-    }
-    return _results;
+    this.resetCollection();
+    return this;
   };
 
   return Swatches;

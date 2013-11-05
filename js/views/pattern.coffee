@@ -15,13 +15,19 @@ class Intarsia.Views.Pattern extends Backbone.View
 
   initialize: ->
     @options = _.extend({}, @defaults(), @options)
-    @palette = new Intarsia.Views.Swatches()
     @form = new Intarsia.Views.PatternForm el: $('#pattern-form')
-
     @generate @options.height, @options.width # bootstrap w/ default dimensions
     #@collection.fetch()  #this is for saved collections
 
     @collection.on 'reset', @render, this
+    events.on 'pattern:reset', @addSwatches, this
+
+  addSwatches: (evt) =>
+    if @palette?    # remove current palette if exists
+      @palette.off()
+      @palette.remove()
+    @palette = new Intarsia.Views.Swatches() #colors: ['red', 'black', 'white', 'default']
+    @$el.prepend(@palette.render().el)  # append swatches
 
   # generate a grid with specified dimensions
   generate: (rows, cols) ->
@@ -39,11 +45,10 @@ class Intarsia.Views.Pattern extends Backbone.View
   # adds new Stitch view and appends it to specified element
   renderItem: (stitchModel, el) =>
     stitchView = new Intarsia.Views.Stitch model: stitchModel
-    stitchView.render()
-    el.append(stitchView.el)
+    el.append(stitchView.render().el)
 
   render: ->
-    @$el.append(@palette.el)  # append swatches
+    @addSwatches()
 
     # separates rows of stiches
     uniqueRows = _.uniq(@collection.pluck('row')).length || 0

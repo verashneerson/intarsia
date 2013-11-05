@@ -12,25 +12,37 @@ class Intarsia.Views.Swatches extends Backbone.View
     ]
 
   initialize: ->
+    @options = _.extend({}, @defaults(), @options)
     models = []
-    for color in @defaults().colors
+    for color in @options.colors
       models.push new Intarsia.Models.Swatch({ color: color })
     @collection = new Intarsia.Collections.Swatches(models)
-    @render()
+    @childViews = []
+    #@render()
 
+    @collection.on 'reset', @resetCollection, this
     events.on 'palette:change', @selectColor, this
-    events.on 'pattern:reset', @setDefaultColor, this
+    events.on 'pattern:reset', @resetCollection, this
 
   # selects the first swatch in palette
-  setDefaultColor: (evt) => @$el.find('.palette-color a')[0].click()
+  setDefaultColor: -> $(@childViews[0].el).find('a').click()
 
   # marks this swatch as selected
   selectColor: (color) =>
     @$el.find('.selected').removeClass('selected')
     @$el.children(".#{color}").addClass('selected')
 
+  addSwatch: (model) ->
+    swatch = new Intarsia.Views.Swatch model: model
+    @childViews.push swatch
+    @$el.append(swatch.render().el)
+
+  resetCollection: ->
+    _(@childViews).each (cv) -> cv.off(); cv.remove()
+    @childViews = []
+    _(@collection.models).each (model) => @addSwatch model
+    @setDefaultColor()
+
   render: ->
-    for item in @collection.models
-      swatch = new Intarsia.Views.Swatch model: item
-      swatch.render()
-      @$el.append(swatch.el)
+    @resetCollection()
+    return this
