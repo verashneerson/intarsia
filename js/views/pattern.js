@@ -24,8 +24,7 @@ Intarsia.Views.Pattern = (function(_super) {
   Pattern.prototype.defaults = function() {
     return {
       width: 40,
-      height: 20,
-      colors: ['red', 'orange', 'yellow', 'green', 'blue', 'navy', 'purple', 'white', 'silver', 'grey', 'black', 'default']
+      height: 20
     };
   };
 
@@ -36,23 +35,8 @@ Intarsia.Views.Pattern = (function(_super) {
   };
 
   Pattern.prototype.initialize = function() {
-    var color, colors;
     this.options = _.extend({}, this.defaults(), this.options);
-    colors = (function() {
-      var _i, _len, _ref1, _results;
-      _ref1 = this.options.colors;
-      _results = [];
-      for (_i = 0, _len = _ref1.length; _i < _len; _i++) {
-        color = _ref1[_i];
-        _results.push({
-          color: color
-        });
-      }
-      return _results;
-    }).call(this);
-    this.palette = new Intarsia.Views.Swatches({
-      collection: new Intarsia.Collections.Swatches(colors)
-    });
+    this.palette = new Intarsia.Views.Palette;
     this.form = new Intarsia.Views.PatternForm({
       el: $('#pattern-form')
     });

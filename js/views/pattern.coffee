@@ -7,11 +7,6 @@ class Intarsia.Views.Pattern extends Backbone.View
   defaults: ->
     width: 40
     height: 20
-    colors: [
-      'red','orange','yellow','green','blue','navy','purple'
-      'white','silver','grey','black'
-      'default' # eraser color
-    ]
 
   events:
     'mousedown': 'paint'
@@ -20,9 +15,8 @@ class Intarsia.Views.Pattern extends Backbone.View
 
   initialize: ->
     @options = _.extend({}, @defaults(), @options)
-    colors = (color: color for color in @options.colors)
-    @palette = new Intarsia.Views.Swatches
-      collection: new Intarsia.Collections.Swatches colors
+
+    @palette = new Intarsia.Views.Palette
     @form = new Intarsia.Views.PatternForm el: $('#pattern-form')
     @generate @options.height, @options.width # bootstrap w/ default dimensions
     #@collection.fetch()  #this is for saved collections
@@ -59,4 +53,4 @@ class Intarsia.Views.Pattern extends Backbone.View
       @template.append(rowEl)
 
     @$el.append(@template)      # adds grid output to DOM
-    @palette.setDefaultColor()  # call again when stitches appended
+    @palette.setDefaultColor()

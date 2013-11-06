@@ -27,7 +27,7 @@ Intarsia.Views.Swatches = (function(_super) {
   };
 
   Swatches.prototype.removeItemViews = function() {
-    return this.trigger('clean_up');
+    return events.trigger('swatch:remove');
   };
 
   Swatches.prototype.addOne = function(item) {
@@ -35,13 +35,13 @@ Intarsia.Views.Swatches = (function(_super) {
     view = new Intarsia.Views.Swatch({
       model: item
     });
-    view.listenTo(this, 'clean_up', view.remove);
     return this.$el.append(view.render().el);
   };
 
   Swatches.prototype.addAll = function() {
     this.removeItemViews();
-    return this.collection.each(this.addOne, this);
+    this.collection.each(this.addOne, this);
+    return this.setDefaultColor();
   };
 
   Swatches.prototype.remove = function() {
@@ -51,7 +51,6 @@ Intarsia.Views.Swatches = (function(_super) {
 
   Swatches.prototype.render = function() {
     this.addAll();
-    this.setDefaultColor();
     return this;
   };
 

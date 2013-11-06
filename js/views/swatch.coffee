@@ -14,6 +14,7 @@ class Intarsia.Views.Swatch extends Backbone.View
   initialize: ->
     @options = _.extend({}, @defaults(), @options)
     @listenTo events, 'swatch:select', @markSelected
+    @listenTo events, 'swatch:remove', @remove
 
   setColor: (evt) =>
     evt.preventDefault()
@@ -31,4 +32,4 @@ class Intarsia.Views.Swatch extends Backbone.View
   render: ->
     color = @model.get 'color'
     @$el.addClass(color).html(@template.render color: color)
-    return this
+    this

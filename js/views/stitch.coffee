@@ -49,4 +49,4 @@ class Intarsia.Views.Stitch extends Backbone.View
     # use Modernizr to check for svg support
     @$el.html(@template)
     @recolor()  # init saved colors
-    return this
+    this
