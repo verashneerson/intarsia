@@ -14,8 +14,7 @@ class Intarsia.Models.Stitch extends Backbone.Model
       @set color: color
 
   # "Erases" the stitch by setting its color to default
-  erase: ->
-    @set color: @defaults().color
+  erase: -> @set color: @defaults().color
 
 class Intarsia.Collections.Stitches extends Backbone.Collection
   model: Intarsia.Models.Stitch

@@ -1,7 +1,5 @@
 class Intarsia.Views.Stitch extends Backbone.View
 
-  model: Intarsia.Models.Stitch
-
   tagName: 'div'
   className: 'stitch-holder'
   template: $('#stitch-template').html()
@@ -18,25 +16,23 @@ class Intarsia.Views.Stitch extends Backbone.View
     @brushColor = @defaultColor = @defaults().color
     @dragging = false
 
-    @model.on 'change', @recolor, this
+    @listenTo @model, 'change:color', @recolor, this
 
     # listens for palette color selection changes
-    events.on 'palette:change', @setBrushColor, this
+    @listenTo events, 'swatch:select', @setBrushColor
 
     # listens for mouse dragging on parent canvas
-    events.on 'mouse:dragging', @setDragging, this
+    @listenTo events, 'mouse:dragging', @setDragging
 
     # reset event sets all stitches to default color
-    events.on 'pattern:reset', @reset
-
-  # model operations
-  getColor: -> @model.get 'color'
+    @listenTo events, 'pattern:reset', @reset
 
   # model decides which color to paint
   paintStitch: (evt) => @model.paint @brushColor
 
   # changes stitch color (on model update)
-  recolor: => @$el.find('.stitch').removeClass().addClass("stitch #{@getColor()}")
+  recolor: => @$el.find('.stitch').removeClass()
+    .addClass("stitch #{ @model.get 'color' }")
 
   # paints stitch only if mouse is held down
   paintContinuous: => @paintStitch() if @dragging

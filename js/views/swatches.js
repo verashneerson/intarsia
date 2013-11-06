@@ -8,74 +8,50 @@ Intarsia.Views.Swatches = (function(_super) {
   __extends(Swatches, _super);
 
   function Swatches() {
-    this.selectColor = __bind(this.selectColor, this);
+    this.addOne = __bind(this.addOne, this);
     _ref = Swatches.__super__.constructor.apply(this, arguments);
     return _ref;
   }
-
-  Swatches.prototype.collection = Intarsia.Collections.Swatches;
 
   Swatches.prototype.tagName = 'ul';
 
   Swatches.prototype.className = 'intarsia-palette clearfix';
 
-  Swatches.prototype.defaults = function() {
-    return {
-      colors: ['red', 'orange', 'yellow', 'green', 'blue', 'navy', 'purple', 'white', 'silver', 'grey', 'black', 'default']
-    };
-  };
-
   Swatches.prototype.initialize = function() {
-    var color, models, _i, _len, _ref1;
-    this.options = _.extend({}, this.defaults(), this.options);
-    models = [];
-    _ref1 = this.options.colors;
-    for (_i = 0, _len = _ref1.length; _i < _len; _i++) {
-      color = _ref1[_i];
-      models.push(new Intarsia.Models.Swatch({
-        color: color
-      }));
-    }
-    this.collection = new Intarsia.Collections.Swatches(models);
-    this.childViews = [];
-    this.collection.on('reset', this.resetCollection, this);
-    events.on('palette:change', this.selectColor, this);
-    return events.on('pattern:reset', this.resetCollection, this);
+    this.collection.on('reset', this.addAll);
+    return this.listenTo(events, 'pattern:reset', this.addAll);
   };
 
   Swatches.prototype.setDefaultColor = function() {
-    return $(this.childViews[0].el).find('a').click();
+    return this.$el.children(":first").find('a').click();
   };
 
-  Swatches.prototype.selectColor = function(color) {
-    this.$el.find('.selected').removeClass('selected');
-    return this.$el.children("." + color).addClass('selected');
+  Swatches.prototype.removeItemViews = function() {
+    return this.trigger('clean_up');
   };
 
-  Swatches.prototype.addSwatch = function(model) {
-    var swatch;
-    swatch = new Intarsia.Views.Swatch({
-      model: model
+  Swatches.prototype.addOne = function(item) {
+    var view;
+    view = new Intarsia.Views.Swatch({
+      model: item
     });
-    this.childViews.push(swatch);
-    return this.$el.append(swatch.render().el);
+    view.listenTo(this, 'clean_up', view.remove);
+    return this.$el.append(view.render().el);
   };
 
-  Swatches.prototype.resetCollection = function() {
-    var _this = this;
-    _(this.childViews).each(function(cv) {
-      cv.off();
-      return cv.remove();
-    });
-    this.childViews = [];
-    _(this.collection.models).each(function(model) {
-      return _this.addSwatch(model);
-    });
-    return this.setDefaultColor();
+  Swatches.prototype.addAll = function() {
+    this.removeItemViews();
+    return this.collection.each(this.addOne, this);
+  };
+
+  Swatches.prototype.remove = function() {
+    this.removeItemViews();
+    return Swatches.__super__.remove.call(this);
   };
 
   Swatches.prototype.render = function() {
-    this.resetCollection();
+    this.addAll();
+    this.setDefaultColor();
     return this;
   };
 

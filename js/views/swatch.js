@@ -8,6 +8,7 @@ Intarsia.Views.Swatch = (function(_super) {
   __extends(Swatch, _super);
 
   function Swatch() {
+    this.markSelected = __bind(this.markSelected, this);
     this.setColor = __bind(this.setColor, this);
     _ref = Swatch.__super__.constructor.apply(this, arguments);
     return _ref;
@@ -32,13 +33,23 @@ Intarsia.Views.Swatch = (function(_super) {
   };
 
   Swatch.prototype.initialize = function() {
-    return this.options = _.extend({}, this.defaults(), this.options);
+    this.options = _.extend({}, this.defaults(), this.options);
+    return this.listenTo(events, 'swatch:select', this.markSelected);
   };
 
   Swatch.prototype.setColor = function(evt) {
     evt.preventDefault();
-    events.trigger('palette:change', this.model.get('color'));
+    events.trigger('swatch:select', this.model.get('color'));
     return false;
+  };
+
+  Swatch.prototype.markSelected = function(color) {
+    console.log("markSelected " + color);
+    if (color === this.model.get('color')) {
+      return this.$el.addClass('selected');
+    } else {
+      return this.$el.removeClass('selected');
+    }
   };
 
   Swatch.prototype.render = function() {

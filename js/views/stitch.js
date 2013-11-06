@@ -18,8 +18,6 @@ Intarsia.Views.Stitch = (function(_super) {
     return _ref;
   }
 
-  Stitch.prototype.model = Intarsia.Models.Stitch;
-
   Stitch.prototype.tagName = 'div';
 
   Stitch.prototype.className = 'stitch-holder';
@@ -41,14 +39,10 @@ Intarsia.Views.Stitch = (function(_super) {
     this.options = _.extend({}, this.defaults(), this.options);
     this.brushColor = this.defaultColor = this.defaults().color;
     this.dragging = false;
-    this.model.on('change', this.recolor, this);
-    events.on('palette:change', this.setBrushColor, this);
-    events.on('mouse:dragging', this.setDragging, this);
-    return events.on('pattern:reset', this.reset);
-  };
-
-  Stitch.prototype.getColor = function() {
-    return this.model.get('color');
+    this.listenTo(this.model, 'change:color', this.recolor, this);
+    this.listenTo(events, 'swatch:select', this.setBrushColor);
+    this.listenTo(events, 'mouse:dragging', this.setDragging);
+    return this.listenTo(events, 'pattern:reset', this.reset);
   };
 
   Stitch.prototype.paintStitch = function(evt) {
@@ -56,7 +50,7 @@ Intarsia.Views.Stitch = (function(_super) {
   };
 
   Stitch.prototype.recolor = function() {
-    return this.$el.find('.stitch').removeClass().addClass("stitch " + (this.getColor()));
+    return this.$el.find('.stitch').removeClass().addClass("stitch " + (this.model.get('color')));
   };
 
   Stitch.prototype.paintContinuous = function() {

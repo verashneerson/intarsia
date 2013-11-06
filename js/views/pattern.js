@@ -11,7 +11,6 @@ Intarsia.Views.Pattern = (function(_super) {
     this.renderItem = __bind(this.renderItem, this);
     this.stopPaint = __bind(this.stopPaint, this);
     this.paint = __bind(this.paint, this);
-    this.addSwatches = __bind(this.addSwatches, this);
     _ref = Pattern.__super__.constructor.apply(this, arguments);
     return _ref;
   }
@@ -25,7 +24,8 @@ Intarsia.Views.Pattern = (function(_super) {
   Pattern.prototype.defaults = function() {
     return {
       width: 40,
-      height: 20
+      height: 20,
+      colors: ['red', 'orange', 'yellow', 'green', 'blue', 'navy', 'purple', 'white', 'silver', 'grey', 'black', 'default']
     };
   };
 
@@ -36,22 +36,28 @@ Intarsia.Views.Pattern = (function(_super) {
   };
 
   Pattern.prototype.initialize = function() {
+    var color, colors;
     this.options = _.extend({}, this.defaults(), this.options);
+    colors = (function() {
+      var _i, _len, _ref1, _results;
+      _ref1 = this.options.colors;
+      _results = [];
+      for (_i = 0, _len = _ref1.length; _i < _len; _i++) {
+        color = _ref1[_i];
+        _results.push({
+          color: color
+        });
+      }
+      return _results;
+    }).call(this);
+    this.palette = new Intarsia.Views.Swatches({
+      collection: new Intarsia.Collections.Swatches(colors)
+    });
     this.form = new Intarsia.Views.PatternForm({
       el: $('#pattern-form')
     });
     this.generate(this.options.height, this.options.width);
-    this.collection.on('reset', this.render, this);
-    return events.on('pattern:reset', this.addSwatches, this);
-  };
-
-  Pattern.prototype.addSwatches = function(evt) {
-    if (this.palette != null) {
-      this.palette.off();
-      this.palette.remove();
-    }
-    this.palette = new Intarsia.Views.Swatches();
-    return this.$el.prepend(this.palette.render().el);
+    return this.listenTo(this.collection, 'reset', this.render, this);
   };
 
   Pattern.prototype.generate = function(rows, cols) {
@@ -86,7 +92,7 @@ Intarsia.Views.Pattern = (function(_super) {
 
   Pattern.prototype.render = function() {
     var item, row, rowColl, rowEl, uniqueRows, _i, _j, _len;
-    this.addSwatches();
+    this.$el.prepend(this.palette.render().el);
     uniqueRows = _.uniq(this.collection.pluck('row')).length || 0;
     for (row = _i = 0; 0 <= uniqueRows ? _i <= uniqueRows : _i >= uniqueRows; row = 0 <= uniqueRows ? ++_i : --_i) {
       rowColl = this.collection.where({

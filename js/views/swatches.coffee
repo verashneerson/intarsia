@@ -1,48 +1,39 @@
 class Intarsia.Views.Swatches extends Backbone.View
-  collection: Intarsia.Collections.Swatches
-
   tagName: 'ul'
   className: 'intarsia-palette clearfix'
 
-  defaults: ->
-    colors: [
-      'red','orange','yellow','green','blue','navy','purple'
-      'white','silver','grey','black'
-      'default' # eraser color
-    ]
-
   initialize: ->
-    @options = _.extend({}, @defaults(), @options)
-    models = []
-    for color in @options.colors
-      models.push new Intarsia.Models.Swatch({ color: color })
-    @collection = new Intarsia.Collections.Swatches(models)
-    @childViews = []
-    #@render()
-
-    @collection.on 'reset', @resetCollection, this
-    events.on 'palette:change', @selectColor, this
-    events.on 'pattern:reset', @resetCollection, this
+    @collection.on 'reset', @addAll
+    @listenTo events, 'pattern:reset', @addAll
 
   # selects the first swatch in palette
-  setDefaultColor: -> $(@childViews[0].el).find('a').click()
+  setDefaultColor: ->
+    @$el.children(":first").find('a').click()
 
-  # marks this swatch as selected
-  selectColor: (color) =>
-    @$el.find('.selected').removeClass('selected')
-    @$el.children(".#{color}").addClass('selected')
+  removeItemViews: ->
+    # let the children know it's time to put away their toys.
+    @trigger 'clean_up'
 
-  addSwatch: (model) ->
-    swatch = new Intarsia.Views.Swatch model: model
-    @childViews.push swatch
-    @$el.append(swatch.render().el)
+  addOne: (item) =>
+    view = new Intarsia.Views.Swatch model: item
 
-  resetCollection: ->
-    _(@childViews).each (cv) -> cv.off(); cv.remove()
-    @childViews = []
-    _(@collection.models).each (model) => @addSwatch model
-    @setDefaultColor()
+    # the item view will listen for the clean_up event on the list_view
+    # and clean up after itself and remove itself from the DOM
+    view.listenTo this, 'clean_up', view.remove
+    @$el.append view.render().el
+
+  addAll: ->
+    # clear out any existing Swatch views when resetting the collection
+    @removeItemViews()
+    @collection.each @addOne, this
+
+  remove: ->
+    # when this view is being removed, it should clean up its children
+    @removeItemViews()
+    super()
 
   render: ->
-    @resetCollection()
-    return this
+    @addAll()
+    @setDefaultColor()
+    this
+
