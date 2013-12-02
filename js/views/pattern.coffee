@@ -13,8 +13,8 @@ class Intarsia.Views.Pattern extends Backbone.View
     'mouseup': 'stopPaint'
     'mouseleave': 'stopPaint'
 
-  initialize: ->
-    @options = _.extend({}, @defaults(), @options)
+  initialize: (options) ->
+    @options = _.extend({}, @defaults(), options)
 
     @palette = new Intarsia.Views.Palette
     @form = new Intarsia.Views.PatternForm el: $('#pattern-form')

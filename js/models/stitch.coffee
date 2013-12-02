@@ -3,8 +3,8 @@ class Intarsia.Models.Stitch extends Backbone.Model
     color: 'default'
     row: 0
 
-  initialize: ->
-    @options = _.extend({}, @defaults(), @options)
+  initialize: (options) ->
+    @options = _.extend({}, @defaults(), options)
 
   # Paints stitch if it isn't already this color; otherwise erases it
   paint: (color) ->

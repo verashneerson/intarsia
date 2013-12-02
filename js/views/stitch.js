@@ -35,8 +35,8 @@ Intarsia.Views.Stitch = (function(_super) {
     'mouseenter': 'paintContinuous'
   };
 
-  Stitch.prototype.initialize = function() {
-    this.options = _.extend({}, this.defaults(), this.options);
+  Stitch.prototype.initialize = function(options) {
+    this.options = _.extend({}, this.defaults(), options);
     this.brushColor = this.defaultColor = this.defaults().color;
     this.dragging = false;
     this.listenTo(this.model, 'change:color', this.recolor, this);

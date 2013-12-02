@@ -17,7 +17,7 @@ Intarsia.Views.Swatches = (function(_super) {
 
   Swatches.prototype.className = 'intarsia-palette clearfix';
 
-  Swatches.prototype.initialize = function() {
+  Swatches.prototype.initialize = function(options) {
     this.collection.on('reset', this.addAll);
     return this.listenTo(events, 'pattern:reset', this.addAll);
   };

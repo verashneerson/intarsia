@@ -17,8 +17,8 @@ Intarsia.Models.Swatch = (function(_super) {
     };
   };
 
-  Swatch.prototype.initialize = function() {
-    return this.options = _.extend({}, this.defaults(), this.options);
+  Swatch.prototype.initialize = function(options) {
+    return this.options = _.extend({}, this.defaults(), options);
   };
 
   return Swatch;

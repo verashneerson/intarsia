@@ -11,8 +11,8 @@ class Intarsia.Views.Swatch extends Backbone.View
   events:
     'click a': 'setColor'
 
-  initialize: ->
-    @options = _.extend({}, @defaults(), @options)
+  initialize: (options) ->
+    @options = _.extend({}, @defaults(), options)
     @listenTo events, 'swatch:select', @markSelected
     @listenTo events, 'swatch:remove', @remove
 

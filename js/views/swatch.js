@@ -32,8 +32,8 @@ Intarsia.Views.Swatch = (function(_super) {
     'click a': 'setColor'
   };
 
-  Swatch.prototype.initialize = function() {
-    this.options = _.extend({}, this.defaults(), this.options);
+  Swatch.prototype.initialize = function(options) {
+    this.options = _.extend({}, this.defaults(), options);
     this.listenTo(events, 'swatch:select', this.markSelected);
     return this.listenTo(events, 'swatch:remove', this.remove);
   };

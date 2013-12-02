@@ -18,8 +18,8 @@ Intarsia.Models.Stitch = (function(_super) {
     };
   };
 
-  Stitch.prototype.initialize = function() {
-    return this.options = _.extend({}, this.defaults(), this.options);
+  Stitch.prototype.initialize = function(options) {
+    return this.options = _.extend({}, this.defaults(), options);
   };
 
   Stitch.prototype.paint = function(color) {

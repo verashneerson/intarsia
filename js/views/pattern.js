@@ -34,8 +34,8 @@ Intarsia.Views.Pattern = (function(_super) {
     'mouseleave': 'stopPaint'
   };
 
-  Pattern.prototype.initialize = function() {
-    this.options = _.extend({}, this.defaults(), this.options);
+  Pattern.prototype.initialize = function(options) {
+    this.options = _.extend({}, this.defaults(), options);
     this.palette = new Intarsia.Views.Palette;
     this.form = new Intarsia.Views.PatternForm({
       el: $('#pattern-form')

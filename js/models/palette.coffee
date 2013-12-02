@@ -7,8 +7,8 @@ class Intarsia.Models.Palette extends Backbone.Model
       'default' # eraser color
     ]
 
-  initialize: ->
-    @options = _.extend({}, @defaults(), @options)
+  initialize: (options) ->
+    @options = _.extend({}, @defaults(), options)
 
 class Intarsia.Collections.Palettes extends Backbone.Collection
   model: Intarsia.Models.Palette

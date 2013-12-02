@@ -18,8 +18,8 @@ Intarsia.Models.Palette = (function(_super) {
     };
   };
 
-  Palette.prototype.initialize = function() {
-    return this.options = _.extend({}, this.defaults(), this.options);
+  Palette.prototype.initialize = function(options) {
+    return this.options = _.extend({}, this.defaults(), options);
   };
 
   return Palette;

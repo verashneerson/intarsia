@@ -4,7 +4,7 @@ class Intarsia.Views.Palette extends Backbone.View
   tagName: 'div'
   className: 'intarsia-palette-holder'
 
-  initialize: ->
+  initialize: (options) ->
     console.log @model
     colors = (color: color for color in @model.options.colors)
     @palette = new Intarsia.Views.Swatches

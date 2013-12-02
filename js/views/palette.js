@@ -17,7 +17,7 @@ Intarsia.Views.Palette = (function(_super) {
 
   Palette.prototype.className = 'intarsia-palette-holder';
 
-  Palette.prototype.initialize = function() {
+  Palette.prototype.initialize = function(options) {
     var color, colors;
     console.log(this.model);
     colors = (function() {

@@ -2,7 +2,7 @@ class Intarsia.Views.Swatches extends Backbone.View
   tagName: 'ul'
   className: 'intarsia-palette clearfix'
 
-  initialize: ->
+  initialize: (options) ->
     @collection.on 'reset', @addAll
     @listenTo events, 'pattern:reset', @addAll
 

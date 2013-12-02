@@ -11,8 +11,8 @@ class Intarsia.Views.Stitch extends Backbone.View
     'mousedown': 'paintStitch'
     'mouseenter': 'paintContinuous'
 
-  initialize: ->
-    @options = _.extend({}, @defaults(), @options)
+  initialize: (options) ->
+    @options = _.extend({}, @defaults(), options)
     @brushColor = @defaultColor = @defaults().color
     @dragging = false
 
