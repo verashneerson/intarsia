@@ -28,6 +28,9 @@ require.config({
     },
     'backbone.localStorage': {
       deps: ['backbone']
+    },
+    hogan: {
+      exports: "Hogan"
     }
   }
 });

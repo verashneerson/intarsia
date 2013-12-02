@@ -18,8 +18,7 @@ require.config
       '//cdnjs.cloudflare.com/ajax/libs/handlebars.js/1.1.2/handlebars.min',
       'vendor/handlebars/handlebars-min'
     ]
-    hogan:
-      'vendor/hogan'
+    hogan: 'vendor/hogan'
     modernizr: 'vendor/modernizr/modernizr-min'
     templates: '../templates'
     text: 'vendor/require-plugins/text'
@@ -41,6 +40,8 @@ require.config
       exports: "Modernizr"
     'backbone.localStorage':
       deps: ['backbone']
+    hogan:
+      exports: "Hogan"
 
 require [
   'backbone'

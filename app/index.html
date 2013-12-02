@@ -33,24 +33,7 @@
       <a class='{{ color }}' href='#'></a>
     </script>
 
-    <!-- vendor -->
-    <script type="text/javascript" src="/scripts/vendor/jquery/jquery-min.js"></script>
-    <script type="text/javascript" src="/scripts/vendor/underscore/underscore-min.js"></script>
-    <script type="text/javascript" src="/scripts/vendor/backbone/backbone-min.js"></script>
-    <script type="text/javascript" src="/scripts/vendor/backbone-validation.js"></script>
-    <script type="text/javascript" src="/scripts/vendor/backbone.localStorage/backbone.localStorage.js"></script>
-    <script type="text/javascript "src="/scripts/vendor/hogan.js"></script>
-    <!-- app -->
-    <script type="text/javascript "src="/scripts/app.js"></script>
-    <script type="text/javascript "src="/scripts/models/stitch.js"></script>
-    <script type="text/javascript "src="/scripts/models/swatch.js"></script>
-    <script type="text/javascript "src="/scripts/models/palette.js"></script>
-    <script type="text/javascript "src="/scripts/views/pattern.js"></script>
-    <script type="text/javascript "src="/scripts/views/pattern_form.js"></script>
-    <script type="text/javascript "src="/scripts/views/swatch.js"></script>
-    <script type="text/javascript "src="/scripts/views/swatches.js"></script>
-    <script type="text/javascript "src="/scripts/views/palette.js"></script>
-    <script type="text/javascript "src="/scripts/views/stitch.js"></script>
+    <script data-main="scripts/main" src="scripts/vendor/require/require.js"></script>
   </head>
   <body>
     <div class="container">
@@ -96,14 +79,5 @@
         </div>
       </div>
     </div>
-    <script type="text/javascript">
-      $(document).ready(function() {
-        var pattern = new Intarsia.Views.Pattern({
-          el: $('#intarsia'),
-          width: 30,
-          height: 30
-        });
-      });
-    </script>
   </body>
 </html>

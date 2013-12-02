@@ -1,7 +1,12 @@
-class Intarsia.Views.PatternForm extends Backbone.View
-  events:
-    'click #reset': 'reset'
+define [
+  'jquery'
+  'backbone'
+  'vent'
+  ], ($, Backbone, AppEvents) ->
+  class PatternFormView extends Backbone.View
+    events:
+      'click #reset': 'reset'
 
-  reset: (evt) =>
-    console.log "form reset"
-    events.trigger('pattern:reset')
+    reset: (evt) =>
+      console.log "form reset"
+      AppEvents.trigger('pattern:reset')
