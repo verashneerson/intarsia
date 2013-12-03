@@ -37,7 +37,7 @@ define(['jquery', 'underscore', 'backbone', 'vent', 'models/stitch', 'collection
 
     PatternView.prototype.initialize = function(options) {
       this.options = _.extend({}, this.defaults(), options);
-      this.palette = new PaletteView;
+      this.palette = new PaletteView();
       this.form = new PatternFormView({
         el: $('#pattern-form')
       });

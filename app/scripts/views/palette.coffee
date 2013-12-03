@@ -7,7 +7,7 @@ define [
   'models/palette'
   ], ($, Backbone, AppEvents, SwatchesCollection, SwatchesView, PaletteModel) ->
   class PaletteView extends Backbone.View
-    model: new PaletteModel
+    model: new PaletteModel()
     tagName: 'div'
     className: 'intarsia-palette-holder'
 

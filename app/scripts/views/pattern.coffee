@@ -28,7 +28,7 @@ define [
     initialize: (options) ->
       @options = _.extend({}, @defaults(), options)
 
-      @palette = new PaletteView
+      @palette = new PaletteView()
       @form = new PatternFormView el: $('#pattern-form')
       @generate @options.height, @options.width # bootstrap w/ default dimensions
       #@collection.fetch()  #this is for saved collections

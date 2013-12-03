@@ -6,6 +6,7 @@ Intarsia.sublime-project
 Intarsia.sublime-workspace
 config.rb
 app/scripts/vendor/
+app/vendor/
 test/vendor/
 dist/
 node_modules/

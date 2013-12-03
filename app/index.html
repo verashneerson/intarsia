@@ -5,55 +5,41 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Intarsia</title>
-    <link rel="stylesheet" media="screen" href="/css/bootstrap.css" >
+    <link rel="stylesheet" media="screen" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css" >
     <link rel="stylesheet" media="screen" href="/css/screen.css" >
     <link rel="icon" href="images/favicon.ico?124" type="image/x-icon">
 
-    <script data-main="scripts/main" src="scripts/vendor/requirejs/require.js"></script>
+    <script data-main="scripts/main" src="vendor/requirejs/require.js"></script>
   </head>
   <body>
-    <div class="container">
-      <div class="navbar">
-        <div class="navbar-inner">
-          <div class="container">
-            <a href="#" class="brand">Intarsia</a>
-          </div>
-        </div>
-      </div>
+    <div id="main-nav" class="navbar navbar-inverse navbar-fixed-top" role="banner">
       <div class="container">
-        <div class="span-12">
-          <form action="#" class="well form-horizontal clearfix" id="pattern-form">
-            <fieldset class="span-4">
-              <div class="control-group">
-                <label for="pattern_name">Name</label>
-                <input type="text" name="pattern[name]" id="pattern_name" />
-                <span class="help-block">Required</span>
-              </div>
-            </fieldset>
-            <fieldset class="span-4">
-              <div class="control-group">
-                <label for="pattern_width">Width</label>
-                <input type="text" name="pattern[width]" id="pattern_width" />
-                <span class="help-block">Required, only a number betw 1 and 100</span>
-              </div>
-            </fieldset>
-            <fieldset class="span-4">
-              <div class="control-group">
-                <label for="pattern_height">Height</label>
-                <input type="text" name="pattern[height]" id="pattern_height" />
-                <span class="help-block">Required, only a number betw 1 and 100</span>
-              </div>
-            </fieldset>
-            <input type="button" class="btn btn-primary" value="Save" id="save" />
-            <input type="button" class="btn btn-secondary" value="Clear" id="reset" />
-          </form>
-        </div>
-        <div class="container">
-          <div class="span-12">
-            <div id="intarsia"></div>
-          </div>
-        </div>
+        <div class="navbar-header"><a href="#" class="navbar-brand">Intarsia</a></div>
       </div>
     </div>
+    <div class="container">
+      <form action="#" class="form-inline clearfix" id="pattern-form" role="form">
+          <div class="form-group">
+            <label for="pattern_name" class="sr-only">Name</label>
+            <input type="text" name="pattern[name]" class="form-control"
+              id="pattern_name" placeholder="Enter Name" />
+          </div>
+          <div class="form-group">
+            <label for="pattern_width" class="sr-only">Width</label>
+            <input type="text" name="pattern[width]" class="form-control"
+              id="pattern_width" placeholder="Enter Width" />
+          </div>
+          <div class="form-group">
+            <label for="pattern_height" class="sr-only">Height</label>
+            <input type="text" name="pattern[height]" class="form-control"
+              id="pattern_height" placeholder="Enter Height" />
+          </div>
+        <button type="submit" class="btn btn-primary" id="save">Save</button>
+        <button type="submit" class="btn btn-default" id="reset">Clear</button>
+      </form>
+    <div class="container">
+      <div id="intarsia"></div>
+    </div>
+  </div>
   </body>
 </html>

@@ -5,12 +5,31 @@
 
 // @import "compass/reset";
 @import "compass";
-$paintColors: red orange yellow green blue navy purple white silver grey black;
+$primary: #F8012F;
+$paintColors: red orange yellow green blue navy purple white silver gray black;
+
+body {
+    padding-top: 50px;
+}
+
+#pattern-form {
+    margin-top: 20px;
+}
+
+#main-nav {
+    background: darken($primary, 10%);
+    border-color: darken($primary, 20%);
+    color: white;
+    a {
+        color: white;
+        text-shadow: 0 1px 0 darken($primary, 20%);
+    }
+}
 
 #intarsia {
     position: relative;
     overflow: hidden;
-    margin: 2em;
+    margin: 2em 0;
 }
 
 #intarsia .intarsia-palette {
@@ -30,7 +49,7 @@ $paintColors: red orange yellow green blue navy purple white silver grey black;
     position: relative;
     float: left;
     padding: 0;
-    margin: -7px 0 0 0;
+    margin: -8px 0 0 0;
     clear: left;
     &.first {
         //border-top: 1px dotted #ccc;
@@ -65,14 +84,14 @@ $paintColors: red orange yellow green blue navy purple white silver grey black;
     &:hover {
         .svg-background { fill: #ddd; }
     }
+}
 
-    /* colors for paintcolors */
-    @each $color in $paintColors {
-      &.#{$color} {
-        .svg-background { fill: $color; }
-        .svg-border { fill: darken($color, 10%); }
-      }
-    }
+/* colors for paintcolors */
+@each $color in $paintColors {
+  #intarsia .stitch.#{$color} {
+    .svg-background { fill: $color; }
+    .svg-border { fill: darken(rgba($color, 1), 10%); }
+  }
 }
 
 #intarsia .palette-color {
@@ -91,7 +110,7 @@ $paintColors: red orange yellow green blue navy purple white silver grey black;
     @each $color in $paintColors {
       &.#{$color} {
         background: $color;
-        border-color: darken($color, 10%);
+        border-color: darken(rgba($color, 1), 10%);
       }
     }
     a {

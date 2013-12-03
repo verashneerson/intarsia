@@ -10,6 +10,7 @@
     "handlebars": "latest",
     "backbone.localStorage": "latest",
     "modernizr": "latest",
-    "requirejs-text": "latest"
+    "requirejs-text": "latest",
+    "bootstrap": "~3.0.2"
   }
 }

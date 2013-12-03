@@ -12,7 +12,7 @@ define(['jquery', 'backbone', 'vent', 'collections/swatches', 'views/swatches', 
       return _ref;
     }
 
-    PaletteView.prototype.model = new PaletteModel;
+    PaletteView.prototype.model = new PaletteModel();
 
     PaletteView.prototype.tagName = 'div';
 
