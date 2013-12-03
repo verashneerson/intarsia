@@ -1,0 +1,15 @@
+{
+  "name": "intarsia",
+  "version": "0.0.1",
+
+  "dependencies": {
+    "underscore": "latest",
+    "backbone": "latest",
+    "jquery": "~1.10",
+    "requirejs": "latest",
+    "handlebars": "latest",
+    "backbone.localStorage": "latest",
+    "modernizr": "latest",
+    "requirejs-text": "latest"
+  }
+}

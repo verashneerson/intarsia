@@ -3,13 +3,14 @@ define [
   'underscore'
   'backbone'
   'vent'
-  'hogan'
-  ], ($, _, Backbone, AppEvents, Hogan) ->
+  'handlebars'
+  'text!templates/swatch.html'
+  ], ($, _, Backbone, AppEvents, Handlebars, template) ->
 
   class SwatchView extends Backbone.View
     tagName: 'li'
     className: 'palette-color'
-    template: Hogan.compile $('#swatch-template').html()
+    template: Handlebars.compile template
 
     defaults: ->
       color: 'default'
@@ -37,5 +38,5 @@ define [
 
     render: ->
       color = @model.get 'color'
-      @$el.addClass(color).html(@template.render color: color)
+      @$el.addClass(color).html(@template(color: color))
       this

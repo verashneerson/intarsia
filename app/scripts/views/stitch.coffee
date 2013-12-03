@@ -3,11 +3,12 @@ define [
   'underscore'
   'backbone'
   'vent'
-  ], ($, _, Backbone, AppEvents) ->
+  'text!templates/stitch.html'
+  ], ($, _, Backbone, AppEvents, template) ->
 
   class StitchView extends Backbone.View
     className: 'stitch-holder'
-    template: $('#stitch-template').html()
+    template: template
 
     defaults: ->
       color: 'default'

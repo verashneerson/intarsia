@@ -5,3 +5,7 @@ img/stitch4.svg
 Intarsia.sublime-project
 Intarsia.sublime-workspace
 config.rb
+app/scripts/vendor/
+test/vendor/
+dist/
+node_modules/

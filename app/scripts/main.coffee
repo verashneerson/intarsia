@@ -4,7 +4,7 @@ require.config
   paths:
     jquery: [
       '//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min',
-      'vendor/jquery/jquery-min'
+      'vendor/jquery/jquery.min'
     ]
     underscore: [
       '//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.5.2/underscore-min',
@@ -16,12 +16,11 @@ require.config
     ]
     handlebars: [
       '//cdnjs.cloudflare.com/ajax/libs/handlebars.js/1.1.2/handlebars.min',
-      'vendor/handlebars/handlebars-min'
+      'vendor/handlebars/handlebars.amd.min'
     ]
-    hogan: 'vendor/hogan'
-    modernizr: 'vendor/modernizr/modernizr-min'
+    modernizr: 'vendor/modernizr/modernizr'
     templates: '../templates'
-    text: 'vendor/require-plugins/text'
+    text: 'vendor/requirejs-text/text'
     'backbone.localStorage': [
       '//cdnjs.cloudflare.com/ajax/libs/backbone-localstorage.js/1.1.0/backbone.localStorage-min.js',
       'vendor/backbone.localStorage/backbone.localStorage'
@@ -40,8 +39,6 @@ require.config
       exports: "Modernizr"
     'backbone.localStorage':
       deps: ['backbone']
-    hogan:
-      exports: "Hogan"
 
 require [
   'backbone'

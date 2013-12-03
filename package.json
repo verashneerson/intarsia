@@ -1,0 +1,22 @@
+{
+  "name": "intarsia",
+  "version": "0.0.1",
+  "description": "intarsia pattern painter",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": "",
+  "author": "",
+  "license": "BSD",
+  "readmeFilename": "README",
+  "gitHead": "ee189e7f7f49cffc0832ba85ee3ba158cf510b01",
+  "devDependencies": {
+    "grunt": "~0.4.2",
+    "grunt-contrib-sass": "~0.5.1",
+    "grunt-contrib-coffee": "~0.7.0"
+  }
+}

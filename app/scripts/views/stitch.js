@@ -3,7 +3,7 @@ var __bind = function(fn, me){ return function(){ return fn.apply(me, arguments)
   __hasProp = {}.hasOwnProperty,
   __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
 
-define(['jquery', 'underscore', 'backbone', 'vent'], function($, _, Backbone, AppEvents) {
+define(['jquery', 'underscore', 'backbone', 'vent', 'text!templates/stitch.html'], function($, _, Backbone, AppEvents, template) {
   var StitchView, _ref;
   return StitchView = (function(_super) {
     __extends(StitchView, _super);
@@ -21,7 +21,7 @@ define(['jquery', 'underscore', 'backbone', 'vent'], function($, _, Backbone, Ap
 
     StitchView.prototype.className = 'stitch-holder';
 
-    StitchView.prototype.template = $('#stitch-template').html();
+    StitchView.prototype.template = template;
 
     StitchView.prototype.defaults = function() {
       return {
