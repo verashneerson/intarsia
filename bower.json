@@ -11,6 +11,7 @@
     "backbone.localStorage": "latest",
     "modernizr": "latest",
     "requirejs-text": "latest",
-    "bootstrap": "~3.0.2"
+    "bootstrap": "~3.0.2",
+    "lodash": "~2.4.1"
   }
 }

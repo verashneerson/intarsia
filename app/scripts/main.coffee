@@ -7,8 +7,10 @@ require.config
       '../vendor/jquery/jquery.min'
     ]
     underscore: [
-      '//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.5.2/underscore-min',
-      '../vendor/underscore/underscore-min'
+      #'//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.5.2/underscore-min',
+      #'../vendor/underscore/underscore-min'
+      '//cdnjs.cloudflare.com/ajax/libs/lodash.js/2.4.1/lodash.min',
+      '../vendor/lodash/dist/lodash.min'
     ]
     backbone: [
       '//cdnjs.cloudflare.com/ajax/libs/backbone.js/1.1.0/backbone-min',

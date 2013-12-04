@@ -6,7 +6,6 @@ module.exports = function(grunt) {
     jshint: {
       files: ["app/scripts/**/*.js"],
       options: {
-        ignore: ['app/scripts/_vendor/**/*.js'],
         boss: true,
         browser: true,
         shadow: true
