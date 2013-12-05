@@ -50,6 +50,11 @@ body {
     margin: 0;
     clear: both;
     //border-left: 1px dotted #ccc;
+    ul {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+    }
 }
 #intarsia .pattern-row {
     position: relative;
@@ -110,9 +115,12 @@ body {
     padding: 0;
     margin: 0 5px 0 0;
     list-style-type: none;
+    width: 22px;
 }
 
 .intarsia-btn-color {
+    position: relative;
+    float: left;
     width: 20px;
     height: 20px;
     border: 1px solid white;

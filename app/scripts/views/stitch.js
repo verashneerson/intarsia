@@ -19,6 +19,8 @@ define(['jquery', 'underscore', 'backbone', 'vent', 'text!templates/stitch.html'
       return _ref;
     }
 
+    StitchView.prototype.tagName = 'li';
+
     StitchView.prototype.className = 'stitch-holder';
 
     StitchView.prototype.template = template;

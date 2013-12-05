@@ -34,11 +34,11 @@ define [
       stitchRow = new StitchesRowView
         collection: stitchRowCollection
         row: row
-
-      @$el.append stitchRow.render().el
+      @$el.children('ul:first').append stitchRow.render().el
 
     addAll: ->
       @removeItemViews()
+      @$el.html '<ul></ul>'
       for row in [0..@options.grid.length-1]
         @addOne @options.grid[row], row
 

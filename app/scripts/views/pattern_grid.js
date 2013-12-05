@@ -53,12 +53,13 @@ define(['jquery', 'underscore', 'backbone', 'vent', 'collections/stitches', 'vie
         collection: stitchRowCollection,
         row: row
       });
-      return this.$el.append(stitchRow.render().el);
+      return this.$el.children('ul:first').append(stitchRow.render().el);
     };
 
     PatternGrid.prototype.addAll = function() {
       var row, _i, _ref1, _results;
       this.removeItemViews();
+      this.$el.html('<ul></ul>');
       _results = [];
       for (row = _i = 0, _ref1 = this.options.grid.length - 1; 0 <= _ref1 ? _i <= _ref1 : _i >= _ref1; row = 0 <= _ref1 ? ++_i : --_i) {
         _results.push(this.addOne(this.options.grid[row], row));

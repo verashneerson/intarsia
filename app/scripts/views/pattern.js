@@ -15,9 +15,7 @@ define(['jquery', 'underscore', 'backbone', 'vent', 'views/pattern_edit_form', '
       return _ref;
     }
 
-    PatternView.prototype.className = 'intarsia-grid';
-
-    PatternView.prototype.templateRow = "<li class='pattern-row'></li>";
+    PatternView.prototype.className = 'intarsia-pattern-edit';
 
     PatternView.prototype.events = {
       'click #reset': 'reset',

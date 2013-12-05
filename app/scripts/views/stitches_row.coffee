@@ -17,9 +17,10 @@ define [
 
     addOne: (item) =>
       stitchView = new StitchView model: item
-      @$el.append stitchView.render().el
+      @$el.children('ul:first').append stitchView.render().el
 
     addAll: ->
+      @$el.html "<ul></ul>"
       @collection.each @addOne
 
     render: ->

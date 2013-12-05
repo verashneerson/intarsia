@@ -9,8 +9,7 @@ define [
   ], ($, _, Backbone, AppEvents, PatternEditFormView, PaletteView, PatternGrid) ->
 
   class PatternView extends Backbone.View
-    className: 'intarsia-grid'
-    templateRow: "<li class='pattern-row'></li>"
+    className: 'intarsia-pattern-edit'
 
     events:
       'click #reset': 'reset'

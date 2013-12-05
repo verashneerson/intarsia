@@ -16,7 +16,7 @@ define [
       color: 'default'
 
     events:
-      'click button': 'setColor'
+      'click a': 'setColor'
 
     initialize: (options) ->
       @options = _.extend({}, @defaults(), options)

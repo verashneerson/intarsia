@@ -24,7 +24,7 @@ define(['jquery', 'underscore', 'backbone', 'vent', 'views/swatch'], function($,
     };
 
     SwatchesView.prototype.setDefaultColor = function() {
-      return this.$el.children(":first").find('button').click();
+      return this.$el.children(":first").children('a:first').click();
     };
 
     SwatchesView.prototype.removeItemViews = function() {

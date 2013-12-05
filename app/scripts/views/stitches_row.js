@@ -28,10 +28,11 @@ define(['jquery', 'underscore', 'backbone', 'vent', 'models/stitch', 'views/stit
       stitchView = new StitchView({
         model: item
       });
-      return this.$el.append(stitchView.render().el);
+      return this.$el.children('ul:first').append(stitchView.render().el);
     };
 
     StitchesRowView.prototype.addAll = function() {
+      this.$el.html("<ul></ul>");
       return this.collection.each(this.addOne);
     };
 

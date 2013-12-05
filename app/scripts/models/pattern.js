@@ -15,8 +15,8 @@ define(['underscore', 'backbone'], function(_, Backbone) {
     PatternModel.prototype.defaults = function() {
       return {
         name: 'My Pattern',
-        width: 30,
-        height: 20,
+        width: 0,
+        height: 0,
         grid: []
       };
     };

@@ -7,6 +7,7 @@ define [
   ], ($, _, Backbone, AppEvents, template) ->
 
   class StitchView extends Backbone.View
+    tagName: 'li'
     className: 'stitch-holder'
     template: template
 

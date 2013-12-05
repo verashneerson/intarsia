@@ -28,7 +28,7 @@ define(['jquery', 'underscore', 'backbone', 'vent', 'handlebars', 'text!template
     };
 
     SwatchView.prototype.events = {
-      'click button': 'setColor'
+      'click a': 'setColor'
     };
 
     SwatchView.prototype.initialize = function(options) {
