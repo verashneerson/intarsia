@@ -2,7 +2,7 @@
 var __hasProp = {}.hasOwnProperty,
   __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
 
-define(['backbone', 'views/pattern'], function(Backbone, PatternView) {
+define(['jquery', 'backbone', 'models/pattern', 'views/pattern', 'views/pattern_create'], function($, Backbone, PatternModel, PatternView, PatternCreateView) {
   var AppRouter, _ref;
   return AppRouter = (function(_super) {
     __extends(AppRouter, _super);
@@ -12,17 +12,99 @@ define(['backbone', 'views/pattern'], function(Backbone, PatternView) {
       return _ref;
     }
 
+    AppRouter.prototype.el = $('#intarsia');
+
     AppRouter.prototype.routes = {
-      '': 'index'
+      'patterns/new': 'newPattern',
+      '*action': 'index'
     };
 
     AppRouter.prototype.index = function() {
-      var pattern;
-      return pattern = new PatternView({
-        el: '#intarsia',
-        width: 30,
-        height: 30
+      var pattern, patternView;
+      pattern = new PatternModel({
+        "name": "My awesome pattern",
+        "width": 40,
+        "height": 30,
+        "grid": [
+          [
+            {
+              "color": "red"
+            }, {
+              "color": "green"
+            }, {
+              "color": "default"
+            }, {
+              "color": "blue"
+            }, {
+              "color": "default"
+            }, {
+              "color": "default"
+            }, {
+              "color": "yellow"
+            }, {
+              "color": "default"
+            }, {
+              "color": "default"
+            }, {
+              "color": "default"
+            }
+          ], [
+            {
+              "color": "default"
+            }, {
+              "color": "default"
+            }, {
+              "color": "default"
+            }, {
+              "color": "default"
+            }, {
+              "color": "default"
+            }, {
+              "color": "default"
+            }, {
+              "color": "default"
+            }, {
+              "color": "default"
+            }, {
+              "color": "default"
+            }, {
+              "color": "default"
+            }
+          ], [
+            {
+              "color": "default"
+            }, {
+              "color": "default"
+            }, {
+              "color": "default"
+            }, {
+              "color": "default"
+            }, {
+              "color": "default"
+            }, {
+              "color": "default"
+            }, {
+              "color": "default"
+            }, {
+              "color": "default"
+            }, {
+              "color": "default"
+            }, {
+              "color": "default"
+            }
+          ]
+        ]
       });
+      patternView = new PatternView({
+        model: pattern
+      });
+      return this.el.append(patternView.render().el);
+    };
+
+    AppRouter.prototype.newPattern = function() {
+      var appView;
+      appView = new PatternCreateView();
+      return this.el.html(appView.render().el);
     };
 
     return AppRouter;

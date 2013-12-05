@@ -2,7 +2,7 @@
 var __hasProp = {}.hasOwnProperty,
   __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
 
-define(['backbone', 'models/palette'], function(Backbone, PaletteModel) {
+define(['backbone', 'models/palette', 'backbone.localStorage'], function(Backbone, PaletteModel) {
   var PalettesCollection, _ref;
   return PalettesCollection = (function(_super) {
     __extends(PalettesCollection, _super);
@@ -13,6 +13,8 @@ define(['backbone', 'models/palette'], function(Backbone, PaletteModel) {
     }
 
     PalettesCollection.prototype.model = PaletteModel;
+
+    PalettesCollection.prototype.url = new Backbone.LocalStorage("IntarsiaPalettes");
 
     return PalettesCollection;
 

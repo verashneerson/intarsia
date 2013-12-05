@@ -2,7 +2,7 @@
 var __hasProp = {}.hasOwnProperty,
   __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
 
-define(['jquery', 'backbone', 'vent', 'collections/swatches', 'views/swatches', 'models/palette'], function($, Backbone, AppEvents, SwatchesCollection, SwatchesView, PaletteModel) {
+define(['jquery', 'backbone', 'vent', 'handlebars', 'text!templates/palette.html', 'collections/swatches', 'views/swatches', 'models/palette'], function($, Backbone, AppEvents, Handlebars, template, SwatchesCollection, SwatchesView, PaletteModel) {
   var PaletteView, _ref;
   return PaletteView = (function(_super) {
     __extends(PaletteView, _super);
@@ -18,12 +18,13 @@ define(['jquery', 'backbone', 'vent', 'collections/swatches', 'views/swatches', 
 
     PaletteView.prototype.className = 'intarsia-palette-holder';
 
+    PaletteView.prototype.template = Handlebars.compile(template);
+
     PaletteView.prototype.initialize = function(options) {
-      var color, colors;
-      console.log(this.model);
-      colors = (function() {
+      var color, swatches;
+      swatches = (function() {
         var _i, _len, _ref1, _results;
-        _ref1 = this.model.options.colors;
+        _ref1 = this.model.options.swatches;
         _results = [];
         for (_i = 0, _len = _ref1.length; _i < _len; _i++) {
           color = _ref1[_i];
@@ -33,8 +34,9 @@ define(['jquery', 'backbone', 'vent', 'collections/swatches', 'views/swatches', 
         }
         return _results;
       }).call(this);
+      this.model.swatches = new SwatchesCollection(swatches);
       this.palette = new SwatchesView({
-        collection: new SwatchesCollection(colors)
+        collection: this.model.swatches
       });
       return this.listenTo(AppEvents, 'pattern:reset', this.reset);
     };
@@ -44,7 +46,10 @@ define(['jquery', 'backbone', 'vent', 'collections/swatches', 'views/swatches', 
     };
 
     PaletteView.prototype.render = function() {
-      this.$el.prepend(this.palette.render().el);
+      this.$el.html(this.template({
+        title: "Choose your stitch color:"
+      }));
+      this.$el.find('.panel-body').append(this.palette.render().el);
       return this;
     };
 

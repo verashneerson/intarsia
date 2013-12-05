@@ -3,95 +3,63 @@ var __bind = function(fn, me){ return function(){ return fn.apply(me, arguments)
   __hasProp = {}.hasOwnProperty,
   __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
 
-define(['jquery', 'underscore', 'backbone', 'vent', 'models/stitch', 'collections/stitches', 'views/stitch', 'views/palette', 'views/pattern_form'], function($, _, Backbone, AppEvents, StitchModel, StitchesCollection, StitchView, PaletteView, PatternFormView) {
+define(['jquery', 'underscore', 'backbone', 'vent', 'views/pattern_edit_form', 'views/palette', 'views/pattern_grid'], function($, _, Backbone, AppEvents, PatternEditFormView, PaletteView, PatternGrid) {
   var PatternView, _ref;
   return PatternView = (function(_super) {
     __extends(PatternView, _super);
 
     function PatternView() {
-      this.renderItem = __bind(this.renderItem, this);
-      this.stopPaint = __bind(this.stopPaint, this);
-      this.paint = __bind(this.paint, this);
+      this.reset = __bind(this.reset, this);
+      this.save = __bind(this.save, this);
       _ref = PatternView.__super__.constructor.apply(this, arguments);
       return _ref;
     }
 
-    PatternView.prototype.collection = StitchesCollection;
-
-    PatternView.prototype.template = $("<div class='intarsia-grid'></div>");
+    PatternView.prototype.className = 'intarsia-grid';
 
     PatternView.prototype.templateRow = "<li class='pattern-row'></li>";
 
-    PatternView.prototype.defaults = function() {
-      return {
-        width: 40,
-        height: 20
-      };
-    };
-
     PatternView.prototype.events = {
-      'mousedown': 'paint',
-      'mouseup': 'stopPaint',
-      'mouseleave': 'stopPaint'
+      'click #reset': 'reset',
+      'click #save': 'save'
     };
 
     PatternView.prototype.initialize = function(options) {
-      this.options = _.extend({}, this.defaults(), options);
-      this.palette = new PaletteView();
-      this.form = new PatternFormView({
-        el: $('#pattern-form')
-      });
-      this.generate(this.options.height, this.options.width);
-      return this.listenTo(this.collection, 'reset', this.render, this);
+      this.options = _.extend({}, this.defaults, options);
+      return this.listenTo(AppEvents, 'pattern:remove', this.remove);
     };
 
-    PatternView.prototype.generate = function(rows, cols) {
-      var col, models, row, _i, _j;
-      models = [];
-      for (row = _i = 0; 0 <= rows ? _i <= rows : _i >= rows; row = 0 <= rows ? ++_i : --_i) {
-        for (col = _j = 0; 0 <= cols ? _j <= cols : _j >= cols; col = 0 <= cols ? ++_j : --_j) {
-          models.push(new StitchModel({
-            row: row
-          }));
-        }
-      }
-      this.collection = new StitchesCollection(models);
-      return this.render();
+    PatternView.prototype.removeItemViews = function() {
+      AppEvents.trigger('pattern_grid:remove');
+      AppEvents.trigger('palette:remove');
+      return AppEvents.trigger('pattern_edit:remove');
     };
 
-    PatternView.prototype.paint = function(evt) {
-      return AppEvents.trigger('mouse:dragging', true);
+    PatternView.prototype.save = function(evt) {
+      return evt.preventDefault();
     };
 
-    PatternView.prototype.stopPaint = function(evt) {
-      return AppEvents.trigger('mouse:dragging', false);
-    };
-
-    PatternView.prototype.renderItem = function(stitchModel, el) {
-      var stitchView;
-      stitchView = new StitchView({
-        model: stitchModel
-      });
-      return el.append(stitchView.render().el);
+    PatternView.prototype.reset = function(evt) {
+      evt.preventDefault();
+      AppEvents.trigger('pattern:reset');
+      return false;
     };
 
     PatternView.prototype.render = function() {
-      var item, row, rowColl, rowEl, uniqueRows, _i, _j, _len;
-      this.$el.prepend(this.palette.render().el);
-      uniqueRows = _.uniq(this.collection.pluck('row')).length || 0;
-      for (row = _i = 0; 0 <= uniqueRows ? _i <= uniqueRows : _i >= uniqueRows; row = 0 <= uniqueRows ? ++_i : --_i) {
-        rowColl = this.collection.where({
-          row: row
-        });
-        rowEl = $(this.templateRow);
-        for (_j = 0, _len = rowColl.length; _j < _len; _j++) {
-          item = rowColl[_j];
-          this.renderItem(item, rowEl);
-        }
-        this.template.append(rowEl);
-      }
-      this.$el.append(this.template);
-      return this.palette.setDefaultColor();
+      var form, grid, palette;
+      this.removeItemViews();
+      form = new PatternEditFormView({
+        model: this.model
+      });
+      this.$el.append(form.render().el);
+      palette = new PaletteView();
+      this.$el.append(palette.render().el);
+      grid = new PatternGrid({
+        grid: this.model.get('grid')
+      });
+      this.$el.append(grid.render().el);
+      palette.setDefaultColor();
+      return this;
     };
 
     return PatternView;

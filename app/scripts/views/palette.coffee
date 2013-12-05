@@ -2,25 +2,29 @@ define [
   'jquery'
   'backbone'
   'vent'
+  'handlebars'
+  'text!templates/palette.html'
   'collections/swatches'
   'views/swatches'
   'models/palette'
-  ], ($, Backbone, AppEvents, SwatchesCollection, SwatchesView, PaletteModel) ->
+  ], ($, Backbone, AppEvents, Handlebars, template, SwatchesCollection, SwatchesView, PaletteModel) ->
   class PaletteView extends Backbone.View
     model: new PaletteModel()
     tagName: 'div'
     className: 'intarsia-palette-holder'
+    template: Handlebars.compile template
 
     initialize: (options) ->
-      console.log @model
-      colors = (color: color for color in @model.options.colors)
+      swatches = (color: color for color in @model.options.swatches)
+      @model.swatches = new SwatchesCollection swatches
       @palette = new SwatchesView
-        collection: new SwatchesCollection colors
+        collection: @model.swatches
       @listenTo AppEvents, 'pattern:reset', @reset
 
     setDefaultColor: ->
       @palette.setDefaultColor()
 
     render: ->
-      @$el.prepend(@palette.render().el)  # append swatches
-      this
+      @$el.html @template({ title: "Choose your stitch color:" })
+      @$el.find('.panel-body').append(@palette.render().el)
+      @

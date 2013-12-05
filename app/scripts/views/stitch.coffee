@@ -33,6 +33,8 @@ define [
       # reset event sets all stitches to default color
       @listenTo AppEvents, 'pattern:reset', @reset
 
+      @listenTo AppEvents, 'stitch:remove', @remove
+
     # model decides which color to paint
     paintStitch: (evt) => @model.paint @brushColor
 

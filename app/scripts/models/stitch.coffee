@@ -2,7 +2,6 @@ define ['backbone', 'underscore'], (Backbone, _) ->
   class StitchModel extends Backbone.Model
     defaults: ->
       color: 'default'
-      row: 0
 
     initialize: (options) ->
       @options = _.extend({}, @defaults(), options)

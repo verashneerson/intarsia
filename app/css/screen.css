@@ -3,7 +3,8 @@
  * Import this file using the following HTML or equivalent:
  * <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css" /> */
 body {
-  padding-top: 50px; }
+  padding-top: 50px;
+  padding-bottom: 20px; }
 
 #pattern-form {
   margin-top: 20px; }
@@ -18,8 +19,12 @@ body {
 
 #intarsia {
   position: relative;
-  overflow: hidden;
-  margin: 2em 0; }
+  overflow: hidden; }
+
+.intarsia-pattern-form {
+  margin: 0 0 20px;
+  position: relative;
+  overflow: hidden; }
 
 #intarsia .intarsia-palette {
   margin: 0 0 20px; }
@@ -121,54 +126,25 @@ body {
 #intarsia .stitch.black .svg-border {
   fill: black; }
 
-#intarsia .palette-color {
+.intarsia-palette {
+  padding: 0; }
+
+.intarsia-palette-color {
   position: relative;
   float: left;
-  width: 20px;
-  height: 20px;
-  border: 1px solid #ccc;
-  background-color: #fcfcfc;
   padding: 0;
   margin: 0 5px 0 0;
-  list-style-type: none;
-  /* colors for paintcolors */ }
-  #intarsia .palette-color.selected {
-    border-color: black !important; }
-  #intarsia .palette-color.red {
-    background: red;
-    border-color: #cc0000; }
-  #intarsia .palette-color.orange {
-    background: orange;
-    border-color: #cc8400; }
-  #intarsia .palette-color.yellow {
-    background: yellow;
-    border-color: #cccc00; }
-  #intarsia .palette-color.green {
-    background: green;
-    border-color: #004d00; }
-  #intarsia .palette-color.blue {
-    background: blue;
-    border-color: #0000cc; }
-  #intarsia .palette-color.navy {
-    background: navy;
-    border-color: #00004d; }
-  #intarsia .palette-color.purple {
-    background: purple;
-    border-color: #4d004d; }
-  #intarsia .palette-color.white {
-    background: white;
-    border-color: #e6e6e6; }
-  #intarsia .palette-color.silver {
-    background: silver;
-    border-color: #a7a7a7; }
-  #intarsia .palette-color.gray {
-    background: gray;
-    border-color: #676767; }
-  #intarsia .palette-color.black {
-    background: black;
-    border-color: black; }
-  #intarsia .palette-color a {
-    display: block;
-    position: absolute;
-    width: 100%;
-    height: 100%; }
+  list-style-type: none; }
+
+.intarsia-btn-color {
+  width: 20px;
+  height: 20px;
+  border: 1px solid white;
+  background-color: #fcfcfc;
+  -webkit-box-shadow: 1px 1px 1px #dadada;
+  -moz-box-shadow: 1px 1px 1px #dadada;
+  box-shadow: 1px 1px 1px #dadada;
+  margin: 0;
+  padding: 0; }
+  .selected > .intarsia-btn-color {
+    border-color: #888; }

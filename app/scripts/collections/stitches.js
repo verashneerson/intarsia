@@ -14,8 +14,6 @@ define(['backbone', 'models/stitch'], function(Backbone, StitchModel) {
 
     StitchesCollection.prototype.model = StitchModel;
 
-    StitchesCollection.prototype.url = '/json/grid.json';
-
     return StitchesCollection;
 
   })(Backbone.Collection);

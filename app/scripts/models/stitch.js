@@ -14,8 +14,7 @@ define(['backbone', 'underscore'], function(Backbone, _) {
 
     StitchModel.prototype.defaults = function() {
       return {
-        color: 'default',
-        row: 0
+        color: 'default'
       };
     };
 

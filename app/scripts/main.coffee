@@ -44,6 +44,9 @@ require.config
       deps: ['backbone']
     bootstrap:
       deps: ['jquery']
+    'backbone.localStorage':
+      deps: ['backbone'],
+      exports: 'Backbone'
 
 require [
   'backbone'
@@ -51,5 +54,6 @@ require [
   'bootstrap'
   'modernizr'
 ], (Backbone, AppRouter) ->
-  router = new AppRouter()
-  Backbone.history.start()
+  $ ->
+    router = new AppRouter()
+    Backbone.history.start()

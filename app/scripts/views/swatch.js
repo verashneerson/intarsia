@@ -17,7 +17,7 @@ define(['jquery', 'underscore', 'backbone', 'vent', 'handlebars', 'text!template
 
     SwatchView.prototype.tagName = 'li';
 
-    SwatchView.prototype.className = 'palette-color';
+    SwatchView.prototype.className = 'intarsia-palette-color';
 
     SwatchView.prototype.template = Handlebars.compile(template);
 
@@ -28,7 +28,7 @@ define(['jquery', 'underscore', 'backbone', 'vent', 'handlebars', 'text!template
     };
 
     SwatchView.prototype.events = {
-      'click a': 'setColor'
+      'click button': 'setColor'
     };
 
     SwatchView.prototype.initialize = function(options) {
@@ -44,7 +44,6 @@ define(['jquery', 'underscore', 'backbone', 'vent', 'handlebars', 'text!template
     };
 
     SwatchView.prototype.markSelected = function(color) {
-      console.log("markSelected " + color);
       if (color === this.model.get('color')) {
         return this.$el.addClass('selected');
       } else {
@@ -55,9 +54,7 @@ define(['jquery', 'underscore', 'backbone', 'vent', 'handlebars', 'text!template
     SwatchView.prototype.render = function() {
       var color;
       color = this.model.get('color');
-      this.$el.addClass(color).html(this.template({
-        color: color
-      }));
+      this.$el.html(this.template(this.model.toJSON()));
       return this;
     };
 

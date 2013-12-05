@@ -1,14 +1,24 @@
 define [
+  'jquery'
   'backbone'
+  'models/pattern'
   'views/pattern'
-  ], (Backbone, PatternView) ->
+  'views/pattern_create'
+  ], ($, Backbone, PatternModel, PatternView, PatternCreateView) ->
 
   class AppRouter extends Backbone.Router
+    el: $('#intarsia')
+
     routes:
-      '': 'index'    # default
+      'patterns/new': 'newPattern'
+      '*action': 'index'    # default
 
     index: ->
-      pattern = new PatternView
-        el: '#intarsia'
-        width: 30
-        height: 30
+      # pattern grid
+      pattern = new PatternModel({"name":"My awesome pattern","width":40,"height":30,"grid":[[{"color":"red"},{"color":"green"},{"color":"default"},{"color":"blue"},{"color":"default"},{"color":"default"},{"color":"yellow"},{"color":"default"},{"color":"default"},{"color":"default"}],[{"color":"default"},{"color":"default"},{"color":"default"},{"color":"default"},{"color":"default"},{"color":"default"},{"color":"default"},{"color":"default"},{"color":"default"},{"color":"default"}],[{"color":"default"},{"color":"default"},{"color":"default"},{"color":"default"},{"color":"default"},{"color":"default"},{"color":"default"},{"color":"default"},{"color":"default"},{"color":"default"}]]})
+      patternView = new PatternView model: pattern
+      @el.append patternView.render().el
+
+    newPattern: ->
+      appView = new PatternCreateView()
+      @el.html appView.render().el

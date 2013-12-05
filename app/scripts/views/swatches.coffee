@@ -14,7 +14,7 @@ define [
       @listenTo AppEvents, 'pattern:reset', @addAll
 
     # selects the first swatch in palette
-    setDefaultColor: -> @$el.children(":first").find('a').click()
+    setDefaultColor: -> @$el.children(":first").find('button').click()
 
     # signals child views to clean up
     removeItemViews: -> AppEvents.trigger 'swatch:remove'

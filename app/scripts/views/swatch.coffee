@@ -9,14 +9,14 @@ define [
 
   class SwatchView extends Backbone.View
     tagName: 'li'
-    className: 'palette-color'
+    className: 'intarsia-palette-color'
     template: Handlebars.compile template
 
     defaults: ->
       color: 'default'
 
     events:
-      'click a': 'setColor'
+      'click button': 'setColor'
 
     initialize: (options) ->
       @options = _.extend({}, @defaults(), options)
@@ -30,7 +30,7 @@ define [
 
     # marks swatch as selected
     markSelected: (color) =>
-      console.log "markSelected #{color}"
+      #console.log "markSelected #{color}"
       if color is @model.get 'color'
         @$el.addClass('selected')
       else
@@ -38,5 +38,5 @@ define [
 
     render: ->
       color = @model.get 'color'
-      @$el.addClass(color).html(@template(color: color))
+      @$el.html @template @model.toJSON()
       this

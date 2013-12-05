@@ -10,6 +10,7 @@ $paintColors: red orange yellow green blue navy purple white silver gray black;
 
 body {
     padding-top: 50px;
+    padding-bottom: 20px;
 }
 
 #pattern-form {
@@ -29,7 +30,12 @@ body {
 #intarsia {
     position: relative;
     overflow: hidden;
-    margin: 2em 0;
+}
+
+.intarsia-pattern-form {
+    margin: 0 0 20px;
+    position: relative;
+    overflow: hidden;
 }
 
 #intarsia .intarsia-palette {
@@ -94,30 +100,28 @@ body {
   }
 }
 
-#intarsia .palette-color {
+.intarsia-palette {
+    padding: 0;
+}
+
+.intarsia-palette-color {
     position: relative;
     float: left;
-    width: 20px;
-    height: 20px;
-    border: 1px solid #ccc;
-    background-color: #fcfcfc;
     padding: 0;
     margin: 0 5px 0 0;
     list-style-type: none;
-    &.selected { border-color: black !important; }
+}
 
-    /* colors for paintcolors */
-    @each $color in $paintColors {
-      &.#{$color} {
-        background: $color;
-        border-color: darken(rgba($color, 1), 10%);
-      }
-    }
-    a {
-        display: block;
-        position: absolute;
-        width: 100%;
-        height: 100%;
+.intarsia-btn-color {
+    width: 20px;
+    height: 20px;
+    border: 1px solid white;
+    background-color: #fcfcfc;
+    @include box-shadow(1px 1px 1px #dadada);
+    margin: 0;
+    padding: 0;
+    .selected > & {
+        border-color: #888;
     }
 }
 

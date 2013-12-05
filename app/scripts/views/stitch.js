@@ -41,7 +41,8 @@ define(['jquery', 'underscore', 'backbone', 'vent', 'text!templates/stitch.html'
       this.listenTo(this.model, 'change:color', this.recolor, this);
       this.listenTo(AppEvents, 'swatch:select', this.setBrushColor);
       this.listenTo(AppEvents, 'mouse:dragging', this.setDragging);
-      return this.listenTo(AppEvents, 'pattern:reset', this.reset);
+      this.listenTo(AppEvents, 'pattern:reset', this.reset);
+      return this.listenTo(AppEvents, 'stitch:remove', this.remove);
     };
 
     StitchView.prototype.paintStitch = function(evt) {

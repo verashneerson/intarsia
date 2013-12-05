@@ -31,12 +31,18 @@ require.config({
     },
     bootstrap: {
       deps: ['jquery']
+    },
+    'backbone.localStorage': {
+      deps: ['backbone'],
+      exports: 'Backbone'
     }
   }
 });
 
 require(['backbone', 'router', 'bootstrap', 'modernizr'], function(Backbone, AppRouter) {
-  var router;
-  router = new AppRouter();
-  return Backbone.history.start();
+  return $(function() {
+    var router;
+    router = new AppRouter();
+    return Backbone.history.start();
+  });
 });
