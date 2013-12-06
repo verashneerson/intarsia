@@ -116,7 +116,8 @@ module.exports = function(grunt) {
         host: 'localhost',
         showDir: true,
         autoIndex: true,
-        defaultExt: 'html'
+        defaultExt: 'html',
+        cache: 0
       },
       test: {
         root: 'test/',
@@ -124,7 +125,8 @@ module.exports = function(grunt) {
         host: 'localhost',
         showDir: true,
         autoIndex: true,
-        defaultExt: 'html'
+        defaultExt: 'html',
+        cache: 10
       },
       dist: {
         root: 'dist/',
@@ -132,7 +134,8 @@ module.exports = function(grunt) {
         host: 'localhost',
         showDir: true,
         autoIndex: true,
-        defaultExt: 'html'
+        defaultExt: 'html',
+        cache: 600
       }
     }
   });

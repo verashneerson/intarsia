@@ -4,10 +4,10 @@ define [
   'backbone'
   'vent'
   'models/stitch'
-  'views/stitch'
+  'views/pattern/stitch'
   ], ($, _, Backbone, AppEvents, StitchModel, StitchView) ->
 
-  class StitchesRowView extends Backbone.View
+  class RowView extends Backbone.View
     tagName: 'li'
     className: 'pattern-row'
 

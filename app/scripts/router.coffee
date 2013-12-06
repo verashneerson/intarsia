@@ -2,8 +2,8 @@ define [
   'jquery'
   'backbone'
   'models/pattern'
-  'views/pattern'
-  'views/pattern_create'
+  'views/pattern/pattern'
+  'views/pattern/forms/create'
   ], ($, Backbone, PatternModel, PatternView, PatternCreateView) ->
 
   class AppRouter extends Backbone.Router
@@ -13,7 +13,7 @@ define [
       'patterns/new': 'newPattern'
       '*action': 'index'    # default
 
-    index: ->
+    index: =>
       # pattern grid
       pattern = new PatternModel({"name":"My awesome pattern","width":40,"height":30,"grid":[[{"color":"red"},{"color":"green"},{"color":"default"},{"color":"blue"},{"color":"default"},{"color":"default"},{"color":"yellow"},{"color":"default"},{"color":"default"},{"color":"default"}],[{"color":"default"},{"color":"default"},{"color":"default"},{"color":"default"},{"color":"default"},{"color":"default"},{"color":"default"},{"color":"default"},{"color":"default"},{"color":"default"}],[{"color":"default"},{"color":"default"},{"color":"default"},{"color":"default"},{"color":"default"},{"color":"default"},{"color":"default"},{"color":"default"},{"color":"default"},{"color":"default"}]]})
       patternView = new PatternView model: pattern
@@ -21,4 +21,4 @@ define [
 
     newPattern: ->
       appView = new PatternCreateView()
-      @el.html appView.render().el
+      @el.append appView.render().el

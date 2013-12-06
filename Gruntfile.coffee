@@ -127,6 +127,7 @@ module.exports = (grunt) ->
         showDir: true
         autoIndex: true
         defaultExt: 'html'
+        cache: 0  # seconds
       test:
         root: 'test/'
         port: 8081
@@ -134,6 +135,7 @@ module.exports = (grunt) ->
         showDir: true
         autoIndex: true
         defaultExt: 'html'
+        cache: 10
       dist:
         root: 'dist/'
         port: 8082
@@ -141,6 +143,7 @@ module.exports = (grunt) ->
         showDir: true
         autoIndex: true
         defaultExt: 'html'
+        cache: 600
 
   grunt.loadNpmTasks 'grunt-contrib-clean'
   grunt.loadNpmTasks 'grunt-contrib-jshint'

@@ -3,60 +3,60 @@ var __bind = function(fn, me){ return function(){ return fn.apply(me, arguments)
   __hasProp = {}.hasOwnProperty,
   __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
 
-define(['jquery', 'underscore', 'backbone', 'vent', 'collections/stitches', 'views/stitches_row'], function($, _, Backbone, AppEvents, StitchesCollection, StitchesRowView) {
-  var PatternGrid, _ref;
-  return PatternGrid = (function(_super) {
-    __extends(PatternGrid, _super);
+define(['jquery', 'underscore', 'backbone', 'vent', 'collections/stitches', 'views/pattern/row'], function($, _, Backbone, AppEvents, StitchesCollection, RowView) {
+  var GridView, _ref;
+  return GridView = (function(_super) {
+    __extends(GridView, _super);
 
-    function PatternGrid() {
+    function GridView() {
       this.addOne = __bind(this.addOne, this);
       this.stopPaint = __bind(this.stopPaint, this);
       this.paint = __bind(this.paint, this);
-      _ref = PatternGrid.__super__.constructor.apply(this, arguments);
+      _ref = GridView.__super__.constructor.apply(this, arguments);
       return _ref;
     }
 
-    PatternGrid.prototype.className = 'intarsia-grid';
+    GridView.prototype.className = 'intarsia-grid';
 
-    PatternGrid.prototype.defaults = {
+    GridView.prototype.defaults = {
       grid: []
     };
 
-    PatternGrid.prototype.events = {
+    GridView.prototype.events = {
       'mousedown': 'paint',
       'mouseup': 'stopPaint',
       'mouseleave': 'stopPaint'
     };
 
-    PatternGrid.prototype.initialize = function(options) {
+    GridView.prototype.initialize = function(options) {
       this.options = _.extend({}, this.defaults, options);
       return this.listenTo(AppEvents, 'pattern_grid:remove', this.remove);
     };
 
-    PatternGrid.prototype.removeItemViews = function() {
+    GridView.prototype.removeItemViews = function() {
       AppEvents.trigger('stitches_row:remove');
       return AppEvents.trigger('stitch:remove');
     };
 
-    PatternGrid.prototype.paint = function(evt) {
+    GridView.prototype.paint = function(evt) {
       return AppEvents.trigger('mouse:dragging', true);
     };
 
-    PatternGrid.prototype.stopPaint = function(evt) {
+    GridView.prototype.stopPaint = function(evt) {
       return AppEvents.trigger('mouse:dragging', false);
     };
 
-    PatternGrid.prototype.addOne = function(item, row) {
+    GridView.prototype.addOne = function(item, row) {
       var stitchRow, stitchRowCollection;
       stitchRowCollection = new StitchesCollection(item);
-      stitchRow = new StitchesRowView({
+      stitchRow = new RowView({
         collection: stitchRowCollection,
         row: row
       });
       return this.$el.children('ul:first').append(stitchRow.render().el);
     };
 
-    PatternGrid.prototype.addAll = function() {
+    GridView.prototype.addAll = function() {
       var row, _i, _ref1, _results;
       this.removeItemViews();
       this.$el.html('<ul></ul>');
@@ -67,12 +67,12 @@ define(['jquery', 'underscore', 'backbone', 'vent', 'collections/stitches', 'vie
       return _results;
     };
 
-    PatternGrid.prototype.render = function() {
+    GridView.prototype.render = function() {
       this.addAll();
       return this;
     };
 
-    return PatternGrid;
+    return GridView;
 
   })(Backbone.View);
 });

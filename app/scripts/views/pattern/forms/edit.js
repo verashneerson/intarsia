@@ -3,18 +3,18 @@ var __hasProp = {}.hasOwnProperty,
   __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
 
 define(['jquery', 'backbone', 'vent', 'handlebars', 'text!templates/pattern_edit_form.html'], function($, Backbone, AppEvents, Handlebars, template) {
-  var PatternEditFormView, _ref;
-  return PatternEditFormView = (function(_super) {
-    __extends(PatternEditFormView, _super);
+  var PatternFormEditView, _ref;
+  return PatternFormEditView = (function(_super) {
+    __extends(PatternFormEditView, _super);
 
-    function PatternEditFormView() {
-      _ref = PatternEditFormView.__super__.constructor.apply(this, arguments);
+    function PatternFormEditView() {
+      _ref = PatternFormEditView.__super__.constructor.apply(this, arguments);
       return _ref;
     }
 
-    PatternEditFormView.prototype.className = 'intarsia-pattern-form';
+    PatternFormEditView.prototype.className = 'intarsia-pattern-form';
 
-    PatternEditFormView.prototype.template = Handlebars.compile(template);
+    PatternFormEditView.prototype.template = Handlebars.compile(template);
 
     /*events:
       'click #reset': 'reset'
@@ -29,12 +29,12 @@ define(['jquery', 'backbone', 'vent', 'handlebars', 'text!templates/pattern_edit
     */
 
 
-    PatternEditFormView.prototype.render = function() {
+    PatternFormEditView.prototype.render = function() {
       this.$el.html(this.template(this.model.toJSON()));
       return this;
     };
 
-    return PatternEditFormView;
+    return PatternFormEditView;
 
   })(Backbone.View);
 });

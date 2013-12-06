@@ -3,7 +3,7 @@ var __bind = function(fn, me){ return function(){ return fn.apply(me, arguments)
   __hasProp = {}.hasOwnProperty,
   __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
 
-define(['jquery', 'underscore', 'backbone', 'vent', 'views/pattern_edit_form', 'views/palette', 'views/pattern_grid'], function($, _, Backbone, AppEvents, PatternEditFormView, PaletteView, PatternGrid) {
+define(['jquery', 'underscore', 'backbone', 'vent', 'views/pattern/forms/edit', 'views/palette/palette', 'views/pattern/grid', 'helpers/helpers'], function($, _, Backbone, AppEvents, PatternFormEditView, PaletteView, GridView, helpers) {
   var PatternView, _ref;
   return PatternView = (function(_super) {
     __extends(PatternView, _super);
@@ -17,6 +17,8 @@ define(['jquery', 'underscore', 'backbone', 'vent', 'views/pattern_edit_form', '
 
     PatternView.prototype.className = 'intarsia-pattern-edit';
 
+    PatternView.prototype.helpers = helpers;
+
     PatternView.prototype.events = {
       'click #reset': 'reset',
       'click #save': 'save'
@@ -25,6 +27,36 @@ define(['jquery', 'underscore', 'backbone', 'vent', 'views/pattern_edit_form', '
     PatternView.prototype.initialize = function(options) {
       this.options = _.extend({}, this.defaults, options);
       return this.listenTo(AppEvents, 'pattern:remove', this.remove);
+    };
+
+    PatternView.prototype.testColors = function() {
+      var color, colorEl, colors, colorsEl, rgb_dark, rgb_light, _i, _j, _len, _len1;
+      colorsEl = $('<div id="colors"></div>');
+      colors = ['#990000', '#009900', '#000099', '#ccc', '#999999', '#666666', 'FFFF00', '#ffffcc', "rgb(255,19, 23)", "rgb(122, 39, 144)", "rgba(122, 39, 144, 1)", "notacolor"];
+      for (_i = 0, _len = colors.length; _i < _len; _i++) {
+        color = colors[_i];
+        rgb_dark = helpers.darken(color);
+        console.log("" + color + " / " + rgb_dark);
+        colorEl = $('<div></div>');
+        colorEl.addClass('color-tester').css({
+          'background-color': color,
+          'border-color': rgb_dark
+        }).appendTo($(colorsEl));
+      }
+      $(colorsEl).append('<div class="clearfix">');
+      for (_j = 0, _len1 = colors.length; _j < _len1; _j++) {
+        color = colors[_j];
+        rgb_light = helpers.lighten(color, 25);
+        console.log("" + color + " / " + rgb_light);
+        colorEl = $('<div></div>');
+        colorEl.addClass('color-tester').css({
+          'background-color': rgb_light,
+          'border-color': color
+        }).appendTo($(colorsEl));
+      }
+      $(colorsEl).append('<div class="clearfix">');
+      this.$el.append(colorsEl);
+      return false;
     };
 
     PatternView.prototype.removeItemViews = function() {
@@ -46,17 +78,18 @@ define(['jquery', 'underscore', 'backbone', 'vent', 'views/pattern_edit_form', '
     PatternView.prototype.render = function() {
       var form, grid, palette;
       this.removeItemViews();
-      form = new PatternEditFormView({
+      form = new PatternFormEditView({
         model: this.model
       });
       this.$el.append(form.render().el);
       palette = new PaletteView();
       this.$el.append(palette.render().el);
-      grid = new PatternGrid({
+      grid = new GridView({
         grid: this.model.get('grid')
       });
       this.$el.append(grid.render().el);
       palette.setDefaultColor();
+      this.testColors();
       return this;
     };
 

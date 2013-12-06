@@ -5,7 +5,7 @@ define [
   'handlebars'
   'text!templates/palette.html'
   'collections/swatches'
-  'views/swatches'
+  'views/palette/swatches'
   'models/palette'
   ], ($, Backbone, AppEvents, Handlebars, template, SwatchesCollection, SwatchesView, PaletteModel) ->
   class PaletteView extends Backbone.View

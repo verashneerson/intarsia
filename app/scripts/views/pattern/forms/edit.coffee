@@ -5,7 +5,7 @@ define [
   'handlebars'
   'text!templates/pattern_edit_form.html'
   ], ($, Backbone, AppEvents, Handlebars, template) ->
-  class PatternEditFormView extends Backbone.View
+  class PatternFormEditView extends Backbone.View
     className: 'intarsia-pattern-form'
     template: Handlebars.compile template
     ###events:

@@ -13,6 +13,16 @@ body {
     padding-bottom: 20px;
 }
 
+.color-tester {
+    width: 20px;
+    height: 20px;
+    border: 1px solid white;
+    float: left;
+    position: relative;
+    background: #f0f0f0;
+    margin: 5px;
+}
+
 #pattern-form {
     margin-top: 20px;
 }

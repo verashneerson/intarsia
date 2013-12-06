@@ -4,10 +4,10 @@ define [
   'backbone'
   'vent'
   'collections/stitches'
-  'views/stitches_row'
-  ], ($, _, Backbone, AppEvents, StitchesCollection, StitchesRowView) ->
+  'views/pattern/row'
+  ], ($, _, Backbone, AppEvents, StitchesCollection, RowView) ->
 
-  class PatternGrid extends Backbone.View
+  class GridView extends Backbone.View
     className: 'intarsia-grid'
 
     defaults:
@@ -31,7 +31,7 @@ define [
 
     addOne: (item, row) =>
       stitchRowCollection = new StitchesCollection(item)
-      stitchRow = new StitchesRowView
+      stitchRow = new RowView
         collection: stitchRowCollection
         row: row
       @$el.children('ul:first').append stitchRow.render().el

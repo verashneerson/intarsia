@@ -3,7 +3,7 @@ define [
   'underscore'
   'backbone'
   'vent'
-  'views/swatch'
+  'views/palette/swatch'
   ], ($, _, Backbone, AppEvents, SwatchView) ->
   class SwatchesView extends Backbone.View
     tagName: 'ul'
