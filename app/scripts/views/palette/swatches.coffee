@@ -2,22 +2,22 @@ define [
   'jquery'
   'underscore'
   'backbone'
-  'vent'
+  'app'
   'views/palette/swatch'
-  ], ($, _, Backbone, AppEvents, SwatchView) ->
+  ], ($, _, Backbone, App, SwatchView) ->
   class SwatchesView extends Backbone.View
     tagName: 'ul'
     className: 'intarsia-palette clearfix'
 
     initialize: (options) ->
       @collection.on 'reset', @addAll
-      @listenTo AppEvents, 'pattern:reset', @addAll
+      @listenTo App.vent, 'pattern:reset', @addAll
 
     # selects the first swatch in palette
     setDefaultColor: -> @$el.children(":first").children('a:first').click()
 
     # signals child views to clean up
-    removeItemViews: -> AppEvents.trigger 'swatch:remove'
+    removeItemViews: -> App.vent.trigger 'swatch:remove'
 
     addOne: (item) =>
       view = new SwatchView model: item

@@ -1,9 +1,9 @@
 define [
   'jquery'
   'backbone'
-  'vent'
+  'app'
   'text!templates/pattern_create_form.html'
-  ], ($, Backbone, AppEvents, template) ->
+  ], ($, Backbone, App, template) ->
   class PatternCreateView extends Backbone.View
     className: 'intarsia-pattern-form'
     template: template
@@ -16,7 +16,7 @@ define [
 
     reset: (evt) =>
       evt.preventDefault();
-      AppEvents.trigger('pattern:reset')
+      App.vent.trigger('pattern:reset')
 
     render: ->
       @$el.html @template

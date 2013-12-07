@@ -2,10 +2,10 @@ define [
   'jquery'
   'underscore'
   'backbone'
-  'vent'
+  'app'
   'handlebars'
   'text!templates/swatch.html'
-  ], ($, _, Backbone, AppEvents, Handlebars, template) ->
+  ], ($, _, Backbone, App, Handlebars, template) ->
 
   class SwatchView extends Backbone.View
     tagName: 'li'
@@ -20,12 +20,12 @@ define [
 
     initialize: (options) ->
       @options = _.extend({}, @defaults(), options)
-      @listenTo AppEvents, 'swatch:select', @markSelected
-      @listenTo AppEvents, 'swatch:remove', @remove
+      @listenTo App.vent, 'swatch:select', @markSelected
+      @listenTo App.vent, 'swatch:remove', @remove
 
     setColor: (evt) =>
       evt.preventDefault()
-      AppEvents.trigger 'swatch:select', @model.get 'color'
+      App.vent.trigger 'swatch:select', @model.get 'color'
       return false
 
     # marks swatch as selected

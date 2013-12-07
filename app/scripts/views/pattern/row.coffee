@@ -2,10 +2,10 @@ define [
   'jquery'
   'underscore'
   'backbone'
-  'vent'
+  'app'
   'models/stitch'
   'views/pattern/stitch'
-  ], ($, _, Backbone, AppEvents, StitchModel, StitchView) ->
+  ], ($, _, Backbone, App, StitchModel, StitchView) ->
 
   class RowView extends Backbone.View
     tagName: 'li'
@@ -13,7 +13,7 @@ define [
 
     initialize: ->
       @collection.on 'reset', @addAll, this
-      @listenTo AppEvents, "stitches_row:remove", @remove
+      @listenTo App.vent, "stitches_row:remove", @remove
 
     addOne: (item) =>
       stitchView = new StitchView model: item

@@ -1,13 +1,13 @@
 define [
   'jquery'
   'backbone'
-  'vent'
+  'app'
   'handlebars'
   'text!templates/palette.html'
   'collections/swatches'
   'views/palette/swatches'
   'models/palette'
-  ], ($, Backbone, AppEvents, Handlebars, template, SwatchesCollection, SwatchesView, PaletteModel) ->
+  ], ($, Backbone, App, Handlebars, template, SwatchesCollection, SwatchesView, PaletteModel) ->
   class PaletteView extends Backbone.View
     model: new PaletteModel()
     tagName: 'div'
@@ -19,7 +19,7 @@ define [
       @model.swatches = new SwatchesCollection swatches
       @palette = new SwatchesView
         collection: @model.swatches
-      @listenTo AppEvents, 'pattern:reset', @reset
+      @listenTo App.vent, 'pattern:reset', @reset
 
     setDefaultColor: ->
       @palette.setDefaultColor()

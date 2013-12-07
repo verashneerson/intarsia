@@ -3,7 +3,7 @@ var __bind = function(fn, me){ return function(){ return fn.apply(me, arguments)
   __hasProp = {}.hasOwnProperty,
   __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
 
-define(['jquery', 'underscore', 'backbone', 'vent', 'collections/stitches', 'views/pattern/row'], function($, _, Backbone, AppEvents, StitchesCollection, RowView) {
+define(['jquery', 'underscore', 'backbone', 'app', 'collections/stitches', 'views/pattern/row'], function($, _, Backbone, App, StitchesCollection, RowView) {
   var GridView, _ref;
   return GridView = (function(_super) {
     __extends(GridView, _super);
@@ -30,20 +30,20 @@ define(['jquery', 'underscore', 'backbone', 'vent', 'collections/stitches', 'vie
 
     GridView.prototype.initialize = function(options) {
       this.options = _.extend({}, this.defaults, options);
-      return this.listenTo(AppEvents, 'pattern_grid:remove', this.remove);
+      return this.listenTo(App.vent, 'pattern_grid:remove', this.remove);
     };
 
     GridView.prototype.removeItemViews = function() {
-      AppEvents.trigger('stitches_row:remove');
-      return AppEvents.trigger('stitch:remove');
+      App.vent.trigger('stitches_row:remove');
+      return App.vent.trigger('stitch:remove');
     };
 
     GridView.prototype.paint = function(evt) {
-      return AppEvents.trigger('mouse:dragging', true);
+      return App.vent.trigger('mouse:dragging', true);
     };
 
     GridView.prototype.stopPaint = function(evt) {
-      return AppEvents.trigger('mouse:dragging', false);
+      return App.vent.trigger('mouse:dragging', false);
     };
 
     GridView.prototype.addOne = function(item, row) {

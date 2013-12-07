@@ -2,7 +2,7 @@
 var __hasProp = {}.hasOwnProperty,
   __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
 
-define(['jquery', 'backbone', 'vent', 'handlebars', 'text!templates/palette.html', 'collections/swatches', 'views/palette/swatches', 'models/palette'], function($, Backbone, AppEvents, Handlebars, template, SwatchesCollection, SwatchesView, PaletteModel) {
+define(['jquery', 'backbone', 'app', 'handlebars', 'text!templates/palette.html', 'collections/swatches', 'views/palette/swatches', 'models/palette'], function($, Backbone, App, Handlebars, template, SwatchesCollection, SwatchesView, PaletteModel) {
   var PaletteView, _ref;
   return PaletteView = (function(_super) {
     __extends(PaletteView, _super);
@@ -38,7 +38,7 @@ define(['jquery', 'backbone', 'vent', 'handlebars', 'text!templates/palette.html
       this.palette = new SwatchesView({
         collection: this.model.swatches
       });
-      return this.listenTo(AppEvents, 'pattern:reset', this.reset);
+      return this.listenTo(App.vent, 'pattern:reset', this.reset);
     };
 
     PaletteView.prototype.setDefaultColor = function() {

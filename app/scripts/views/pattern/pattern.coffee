@@ -2,12 +2,12 @@ define [
   'jquery'
   'underscore'
   'backbone'
-  'vent'
+  'app'
   'views/pattern/forms/edit'
   'views/palette/palette'
   'views/pattern/grid'
   'helpers/helpers'
-  ], ($, _, Backbone, AppEvents, PatternFormEditView, PaletteView, GridView, helpers) ->
+  ], ($, _, Backbone, App, PatternFormEditView, PaletteView, GridView, helpers) ->
 
   class PatternView extends Backbone.View
     className: 'intarsia-pattern-edit'
@@ -19,11 +19,11 @@ define [
 
     initialize: (options) ->
       @options = _.extend({}, @defaults, options)
-      @listenTo AppEvents, 'pattern:remove', @remove
+      @listenTo App.vent, 'pattern:remove', @remove
 
     testColors: ->
       colorsEl = $('<div id="colors"></div>')
-      colors = ['#990000', '#009900', '#000099', '#ccc', '#999999', '#666666', 'FFFF00', '#ffffcc', "rgb(255,19, 23)", "rgb(122, 39, 144)", "rgba(122, 39, 144, 1)", "notacolor"]
+      colors = ['#990000', '#009900', '#009', '#ccc', '#999999', '#666666', 'FFFF00', '#ffffcc', "rgb(255,19, 23)", "rgb(122, 39, 144)", "rgba(122, 39, 144, 1)", "notacolor"]
 
       for color in colors
         rgb_dark = helpers.darken(color)
@@ -55,16 +55,16 @@ define [
 
 
     removeItemViews: ->
-      AppEvents.trigger 'pattern_grid:remove'
-      AppEvents.trigger 'palette:remove'
-      AppEvents.trigger 'pattern_edit:remove'
+      App.vent.trigger 'pattern_grid:remove'
+      App.vent.trigger 'palette:remove'
+      App.vent.trigger 'pattern_edit:remove'
 
     save: (evt) =>
       evt.preventDefault()
 
     reset: (evt) =>
       evt.preventDefault()
-      AppEvents.trigger('pattern:reset')
+      App.vent.trigger('pattern:reset')
       return false
 
     render: ->
@@ -82,5 +82,4 @@ define [
 
       palette.setDefaultColor()
       @testColors()
-
       @

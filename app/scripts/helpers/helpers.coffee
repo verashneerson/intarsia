@@ -1,16 +1,10 @@
 define (require) ->
-  Color       = require 'helpers/color'
-  ColorString = require 'helpers/color_string'
+  Color = require 'helpers/color'
+
   do ->
-    # only supports 6-digit hex and rgb(a) values; no color names
+    # supports 3- or 6-digit hex and rgb(a) values; no color names
     darken: (colorVal, percent = percent || 10) ->
-      colorStr = new ColorString colorVal
-      colorObj = colorStr.toColor()
-
-      # don't adjust color if conversion fails
-      return colorVal unless colorObj #is colorVal
-
-      color = new Color colorObj
+      color = new Color colorVal
       return color.adjust(percent).toHex()
 
     lighten: (color, percent) ->

@@ -3,7 +3,7 @@ var __bind = function(fn, me){ return function(){ return fn.apply(me, arguments)
   __hasProp = {}.hasOwnProperty,
   __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
 
-define(['jquery', 'underscore', 'backbone', 'vent', 'handlebars', 'text!templates/swatch.html'], function($, _, Backbone, AppEvents, Handlebars, template) {
+define(['jquery', 'underscore', 'backbone', 'app', 'handlebars', 'text!templates/swatch.html'], function($, _, Backbone, App, Handlebars, template) {
   var SwatchView, _ref;
   return SwatchView = (function(_super) {
     __extends(SwatchView, _super);
@@ -33,13 +33,13 @@ define(['jquery', 'underscore', 'backbone', 'vent', 'handlebars', 'text!template
 
     SwatchView.prototype.initialize = function(options) {
       this.options = _.extend({}, this.defaults(), options);
-      this.listenTo(AppEvents, 'swatch:select', this.markSelected);
-      return this.listenTo(AppEvents, 'swatch:remove', this.remove);
+      this.listenTo(App.vent, 'swatch:select', this.markSelected);
+      return this.listenTo(App.vent, 'swatch:remove', this.remove);
     };
 
     SwatchView.prototype.setColor = function(evt) {
       evt.preventDefault();
-      AppEvents.trigger('swatch:select', this.model.get('color'));
+      App.vent.trigger('swatch:select', this.model.get('color'));
       return false;
     };
 

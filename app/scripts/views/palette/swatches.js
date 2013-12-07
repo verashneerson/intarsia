@@ -3,7 +3,7 @@ var __bind = function(fn, me){ return function(){ return fn.apply(me, arguments)
   __hasProp = {}.hasOwnProperty,
   __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
 
-define(['jquery', 'underscore', 'backbone', 'vent', 'views/palette/swatch'], function($, _, Backbone, AppEvents, SwatchView) {
+define(['jquery', 'underscore', 'backbone', 'app', 'views/palette/swatch'], function($, _, Backbone, App, SwatchView) {
   var SwatchesView, _ref;
   return SwatchesView = (function(_super) {
     __extends(SwatchesView, _super);
@@ -20,7 +20,7 @@ define(['jquery', 'underscore', 'backbone', 'vent', 'views/palette/swatch'], fun
 
     SwatchesView.prototype.initialize = function(options) {
       this.collection.on('reset', this.addAll);
-      return this.listenTo(AppEvents, 'pattern:reset', this.addAll);
+      return this.listenTo(App.vent, 'pattern:reset', this.addAll);
     };
 
     SwatchesView.prototype.setDefaultColor = function() {
@@ -28,7 +28,7 @@ define(['jquery', 'underscore', 'backbone', 'vent', 'views/palette/swatch'], fun
     };
 
     SwatchesView.prototype.removeItemViews = function() {
-      return AppEvents.trigger('swatch:remove');
+      return App.vent.trigger('swatch:remove');
     };
 
     SwatchesView.prototype.addOne = function(item) {

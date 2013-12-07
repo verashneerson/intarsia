@@ -2,9 +2,9 @@ define [
   'jquery'
   'underscore'
   'backbone'
-  'vent'
+  'app'
   'text!templates/stitch.html'
-  ], ($, _, Backbone, AppEvents, template) ->
+  ], ($, _, Backbone, App, template) ->
 
   class StitchView extends Backbone.View
     tagName: 'li'
@@ -26,15 +26,15 @@ define [
       @listenTo @model, 'change:color', @recolor, this
 
       # listens for palette color selection changes
-      @listenTo AppEvents, 'swatch:select', @setBrushColor
+      @listenTo App.vent, 'swatch:select', @setBrushColor
 
       # listens for mouse dragging on parent canvas
-      @listenTo AppEvents, 'mouse:dragging', @setDragging
+      @listenTo App.vent, 'mouse:dragging', @setDragging
 
       # reset event sets all stitches to default color
-      @listenTo AppEvents, 'pattern:reset', @reset
+      @listenTo App.vent, 'pattern:reset', @reset
 
-      @listenTo AppEvents, 'stitch:remove', @remove
+      @listenTo App.vent, 'stitch:remove', @remove
 
     # model decides which color to paint
     paintStitch: (evt) => @model.paint @brushColor

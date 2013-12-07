@@ -3,7 +3,7 @@ var __bind = function(fn, me){ return function(){ return fn.apply(me, arguments)
   __hasProp = {}.hasOwnProperty,
   __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
 
-define(['jquery', 'backbone', 'vent', 'text!templates/pattern_create_form.html'], function($, Backbone, AppEvents, template) {
+define(['jquery', 'backbone', 'app', 'text!templates/pattern_create_form.html'], function($, Backbone, App, template) {
   var PatternCreateView, _ref;
   return PatternCreateView = (function(_super) {
     __extends(PatternCreateView, _super);
@@ -30,7 +30,7 @@ define(['jquery', 'backbone', 'vent', 'text!templates/pattern_create_form.html']
 
     PatternCreateView.prototype.reset = function(evt) {
       evt.preventDefault();
-      return AppEvents.trigger('pattern:reset');
+      return App.vent.trigger('pattern:reset');
     };
 
     PatternCreateView.prototype.render = function() {

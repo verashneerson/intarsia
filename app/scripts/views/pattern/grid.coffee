@@ -2,10 +2,10 @@ define [
   'jquery'
   'underscore'
   'backbone'
-  'vent'
+  'app'
   'collections/stitches'
   'views/pattern/row'
-  ], ($, _, Backbone, AppEvents, StitchesCollection, RowView) ->
+  ], ($, _, Backbone, App, StitchesCollection, RowView) ->
 
   class GridView extends Backbone.View
     className: 'intarsia-grid'
@@ -20,14 +20,14 @@ define [
 
     initialize: (options) ->
       @options = _.extend({}, @defaults, options)
-      @listenTo AppEvents, 'pattern_grid:remove', @remove
+      @listenTo App.vent, 'pattern_grid:remove', @remove
 
     removeItemViews: ->
-      AppEvents.trigger 'stitches_row:remove'
-      AppEvents.trigger 'stitch:remove'
+      App.vent.trigger 'stitches_row:remove'
+      App.vent.trigger 'stitch:remove'
 
-    paint: (evt) => AppEvents.trigger('mouse:dragging', true)
-    stopPaint: (evt) => AppEvents.trigger('mouse:dragging', false)
+    paint: (evt) => App.vent.trigger('mouse:dragging', true)
+    stopPaint: (evt) => App.vent.trigger('mouse:dragging', false)
 
     addOne: (item, row) =>
       stitchRowCollection = new StitchesCollection(item)

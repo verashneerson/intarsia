@@ -3,7 +3,7 @@ var __bind = function(fn, me){ return function(){ return fn.apply(me, arguments)
   __hasProp = {}.hasOwnProperty,
   __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
 
-define(['jquery', 'underscore', 'backbone', 'vent', 'views/pattern/forms/edit', 'views/palette/palette', 'views/pattern/grid', 'helpers/helpers'], function($, _, Backbone, AppEvents, PatternFormEditView, PaletteView, GridView, helpers) {
+define(['jquery', 'underscore', 'backbone', 'app', 'views/pattern/forms/edit', 'views/palette/palette', 'views/pattern/grid', 'helpers/helpers'], function($, _, Backbone, App, PatternFormEditView, PaletteView, GridView, helpers) {
   var PatternView, _ref;
   return PatternView = (function(_super) {
     __extends(PatternView, _super);
@@ -26,13 +26,13 @@ define(['jquery', 'underscore', 'backbone', 'vent', 'views/pattern/forms/edit', 
 
     PatternView.prototype.initialize = function(options) {
       this.options = _.extend({}, this.defaults, options);
-      return this.listenTo(AppEvents, 'pattern:remove', this.remove);
+      return this.listenTo(App.vent, 'pattern:remove', this.remove);
     };
 
     PatternView.prototype.testColors = function() {
       var color, colorEl, colors, colorsEl, rgb_dark, rgb_light, _i, _j, _len, _len1;
       colorsEl = $('<div id="colors"></div>');
-      colors = ['#990000', '#009900', '#000099', '#ccc', '#999999', '#666666', 'FFFF00', '#ffffcc', "rgb(255,19, 23)", "rgb(122, 39, 144)", "rgba(122, 39, 144, 1)", "notacolor"];
+      colors = ['#990000', '#009900', '#009', '#ccc', '#999999', '#666666', 'FFFF00', '#ffffcc', "rgb(255,19, 23)", "rgb(122, 39, 144)", "rgba(122, 39, 144, 1)", "notacolor"];
       for (_i = 0, _len = colors.length; _i < _len; _i++) {
         color = colors[_i];
         rgb_dark = helpers.darken(color);
@@ -60,9 +60,9 @@ define(['jquery', 'underscore', 'backbone', 'vent', 'views/pattern/forms/edit', 
     };
 
     PatternView.prototype.removeItemViews = function() {
-      AppEvents.trigger('pattern_grid:remove');
-      AppEvents.trigger('palette:remove');
-      return AppEvents.trigger('pattern_edit:remove');
+      App.vent.trigger('pattern_grid:remove');
+      App.vent.trigger('palette:remove');
+      return App.vent.trigger('pattern_edit:remove');
     };
 
     PatternView.prototype.save = function(evt) {
@@ -71,7 +71,7 @@ define(['jquery', 'underscore', 'backbone', 'vent', 'views/pattern/forms/edit', 
 
     PatternView.prototype.reset = function(evt) {
       evt.preventDefault();
-      AppEvents.trigger('pattern:reset');
+      App.vent.trigger('pattern:reset');
       return false;
     };
 

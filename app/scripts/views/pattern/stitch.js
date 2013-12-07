@@ -3,7 +3,7 @@ var __bind = function(fn, me){ return function(){ return fn.apply(me, arguments)
   __hasProp = {}.hasOwnProperty,
   __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
 
-define(['jquery', 'underscore', 'backbone', 'vent', 'text!templates/stitch.html'], function($, _, Backbone, AppEvents, template) {
+define(['jquery', 'underscore', 'backbone', 'app', 'text!templates/stitch.html'], function($, _, Backbone, App, template) {
   var StitchView, _ref;
   return StitchView = (function(_super) {
     __extends(StitchView, _super);
@@ -41,10 +41,10 @@ define(['jquery', 'underscore', 'backbone', 'vent', 'text!templates/stitch.html'
       this.brushColor = this.defaultColor = this.defaults().color;
       this.dragging = false;
       this.listenTo(this.model, 'change:color', this.recolor, this);
-      this.listenTo(AppEvents, 'swatch:select', this.setBrushColor);
-      this.listenTo(AppEvents, 'mouse:dragging', this.setDragging);
-      this.listenTo(AppEvents, 'pattern:reset', this.reset);
-      return this.listenTo(AppEvents, 'stitch:remove', this.remove);
+      this.listenTo(App.vent, 'swatch:select', this.setBrushColor);
+      this.listenTo(App.vent, 'mouse:dragging', this.setDragging);
+      this.listenTo(App.vent, 'pattern:reset', this.reset);
+      return this.listenTo(App.vent, 'stitch:remove', this.remove);
     };
 
     StitchView.prototype.paintStitch = function(evt) {

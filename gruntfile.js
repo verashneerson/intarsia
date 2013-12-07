@@ -112,7 +112,7 @@ module.exports = function(grunt) {
     'http-server': {
       dev: {
         root: 'app/',
-        port: 8080,
+        port: 8000,
         host: 'localhost',
         showDir: true,
         autoIndex: true,
@@ -121,7 +121,7 @@ module.exports = function(grunt) {
       },
       test: {
         root: 'test/',
-        port: 8081,
+        port: 8001,
         host: 'localhost',
         showDir: true,
         autoIndex: true,
@@ -130,7 +130,7 @@ module.exports = function(grunt) {
       },
       dist: {
         root: 'dist/',
-        port: 8082,
+        port: 8002,
         host: 'localhost',
         showDir: true,
         autoIndex: true,

@@ -2,7 +2,7 @@
 var __hasProp = {}.hasOwnProperty,
   __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
 
-define(['jquery', 'backbone', 'vent', 'handlebars', 'text!templates/pattern_edit_form.html'], function($, Backbone, AppEvents, Handlebars, template) {
+define(['jquery', 'backbone', 'app', 'handlebars', 'text!templates/pattern_edit_form.html'], function($, Backbone, App, Handlebars, template) {
   var PatternFormEditView, _ref;
   return PatternFormEditView = (function(_super) {
     __extends(PatternFormEditView, _super);
@@ -25,7 +25,7 @@ define(['jquery', 'backbone', 'vent', 'handlebars', 'text!templates/pattern_edit
     
     reset: (evt) =>
       evt.preventDefault()
-      AppEvents.trigger('pattern:reset')
+      App.vent.trigger('pattern:reset')
     */
 
 

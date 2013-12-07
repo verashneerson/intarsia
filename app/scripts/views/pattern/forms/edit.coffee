@@ -1,10 +1,10 @@
 define [
   'jquery'
   'backbone'
-  'vent'
+  'app'
   'handlebars'
   'text!templates/pattern_edit_form.html'
-  ], ($, Backbone, AppEvents, Handlebars, template) ->
+  ], ($, Backbone, App, Handlebars, template) ->
   class PatternFormEditView extends Backbone.View
     className: 'intarsia-pattern-form'
     template: Handlebars.compile template
@@ -17,7 +17,7 @@ define [
 
     reset: (evt) =>
       evt.preventDefault()
-      AppEvents.trigger('pattern:reset')###
+      App.vent.trigger('pattern:reset')###
 
     render: ->
       @$el.html @template @model.toJSON()

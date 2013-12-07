@@ -3,7 +3,7 @@ var __bind = function(fn, me){ return function(){ return fn.apply(me, arguments)
   __hasProp = {}.hasOwnProperty,
   __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
 
-define(['jquery', 'underscore', 'backbone', 'vent', 'models/stitch', 'views/pattern/stitch'], function($, _, Backbone, AppEvents, StitchModel, StitchView) {
+define(['jquery', 'underscore', 'backbone', 'app', 'models/stitch', 'views/pattern/stitch'], function($, _, Backbone, App, StitchModel, StitchView) {
   var RowView, _ref;
   return RowView = (function(_super) {
     __extends(RowView, _super);
@@ -20,7 +20,7 @@ define(['jquery', 'underscore', 'backbone', 'vent', 'models/stitch', 'views/patt
 
     RowView.prototype.initialize = function() {
       this.collection.on('reset', this.addAll, this);
-      return this.listenTo(AppEvents, "stitches_row:remove", this.remove);
+      return this.listenTo(App.vent, "stitches_row:remove", this.remove);
     };
 
     RowView.prototype.addOne = function(item) {
