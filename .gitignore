@@ -10,3 +10,5 @@ app/vendor/
 test/vendor/
 dist/
 node_modules/
+app/build/
+app/data/

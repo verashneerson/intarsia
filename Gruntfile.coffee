@@ -3,7 +3,7 @@ module.exports = (grunt) ->
     pkg: grunt.file.readJSON('package.json')
     clean: ["dist/", "app/css"]
     jshint:
-      files: ["app/scripts/**/*.js"]
+      files: ["app/js/**/*.js"]
       options:
         boss: true
         browser: true
@@ -44,7 +44,7 @@ module.exports = (grunt) ->
 
       # When parseFiles = true, this task will crawl all *.js, *.css, *.scss files, except files that are in node_modules/.
       # You can override this by defining a "files" array below.
-      "files" : ['app/scripts/**/*.js', 'app/sass/**/*.scss']
+      "files" : ['app/js/**/*.js', 'app/sass/**/*.scss']
 
       # When parseFiles = true, matchCommunityTests = true will attempt to
       # match user-contributed tests.
@@ -56,9 +56,9 @@ module.exports = (grunt) ->
     requirejs:
       release:
         options:
-          baseUrl: "app/scripts"
-          mainConfigFile: 'app/scripts/main.js'
-          out: 'dist/scripts/main.js'
+          baseUrl: "app/js"
+          mainConfigFile: 'app/js/main.js'
+          out: 'dist/js/main.js'
           name: 'main'
           optimize: 'uglify2'
 
@@ -114,6 +114,7 @@ module.exports = (grunt) ->
               'vendor/backbone/backbone-min.js'
               'vendor/handlebars/handlebars.amd.min.js'
               'vendor/bootstrap/dist/js/bootstrap.min.js'
+              'vendor/requirejs/require.js'
             ]
             dest: 'dist/'
           }
@@ -146,7 +147,7 @@ module.exports = (grunt) ->
         cache: 600
 
   grunt.loadNpmTasks 'grunt-contrib-clean'
-  grunt.loadNpmTasks 'grunt-contrib-jshint'
+  #grunt.loadNpmTasks 'grunt-contrib-jshint'
   grunt.loadNpmTasks 'grunt-contrib-copy'
   grunt.loadNpmTasks 'grunt-contrib-sass'
   grunt.loadNpmTasks 'grunt-contrib-cssmin'
@@ -160,7 +161,7 @@ module.exports = (grunt) ->
 
   grunt.registerTask 'default', [
     'clean'
-    'jshint'
+    #'jshint'
     'modernizr'
     'requirejs'
     'sass'

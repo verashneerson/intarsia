@@ -40,8 +40,6 @@ require.config
       exports: "Handlebars"
     modernizr:
       exports: "Modernizr"
-    'backbone.localStorage':
-      deps: ['backbone']
     bootstrap:
       deps: ['jquery']
     'backbone.localStorage':

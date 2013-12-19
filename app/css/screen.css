@@ -2,13 +2,10 @@
  * In this file you should write your main styles. (or centralize your imports)
  * Import this file using the following HTML or equivalent:
  * <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css" /> */
-/* line 11, ../sass/screen.scss */
 body {
   padding-top: 50px;
-  padding-bottom: 20px;
-}
+  padding-bottom: 20px; }
 
-/* line 16, ../sass/screen.scss */
 .color-tester {
   width: 20px;
   height: 20px;
@@ -16,223 +13,143 @@ body {
   float: left;
   position: relative;
   background: #f0f0f0;
-  margin: 5px;
-}
+  margin: 5px; }
 
-/* line 26, ../sass/screen.scss */
 #pattern-form {
-  margin-top: 20px;
-}
+  margin-top: 20px; }
 
-/* line 30, ../sass/screen.scss */
 #main-nav {
   background: #c50125;
   border-color: #92011c;
-  color: white;
-}
-/* line 34, ../sass/screen.scss */
-#main-nav a {
-  color: white;
-  text-shadow: 0 1px 0 #92011c;
-}
+  color: white; }
+  #main-nav a {
+    color: white;
+    text-shadow: 0 1px 0 #92011c; }
 
-/* line 40, ../sass/screen.scss */
 #intarsia {
   position: relative;
-  overflow: hidden;
-}
+  overflow: hidden; }
 
-/* line 45, ../sass/screen.scss */
 .intarsia-pattern-form {
   margin: 0 0 20px;
   position: relative;
-  overflow: hidden;
-}
+  overflow: hidden; }
 
-/* line 51, ../sass/screen.scss */
 #intarsia .intarsia-palette {
-  margin: 0 0 20px;
-}
+  margin: 0 0 20px; }
 
-/* line 55, ../sass/screen.scss */
 #intarsia .intarsia-grid {
   position: relative;
   overflow: hidden;
   list-style: none;
   padding: 7px 0 0 0;
   margin: 0;
-  clear: both;
-}
-/* line 63, ../sass/screen.scss */
-#intarsia .intarsia-grid ul {
-  margin: 0;
-  padding: 0;
-  list-style: none;
-}
+  clear: both; }
+  #intarsia .intarsia-grid ul {
+    margin: 0;
+    padding: 0;
+    list-style: none; }
 
-/* line 69, ../sass/screen.scss */
 #intarsia .pattern-row {
   position: relative;
   float: left;
   padding: 0;
   margin: -8px 0 0 0;
-  clear: left;
-}
+  clear: left; }
 
-/* line 79, ../sass/screen.scss */
 #intarsia .tenth .stitch-holder {
-  #border-bottom-color: #999;
-}
+  #border-bottom-color: #999; }
 
-/* line 82, ../sass/screen.scss */
 #intarsia .stitch-holder {
   position: relative;
   float: left;
   width: 20px;
-  height: 20px;
-}
+  height: 20px; }
 
-/* line 93, ../sass/screen.scss */
 #intarsia .stitch {
   position: absolute;
   width: 100%;
   height: 100%;
+  -webkit-transition: all 0.25s ease-in-out;
   -moz-transition: all 0.25s ease-in-out;
   -o-transition: all 0.25s ease-in-out;
-  -webkit-transition: all 0.25s ease-in-out;
-  transition: all 0.25s ease-in-out;
-}
-/* line 98, ../sass/screen.scss */
-#intarsia .stitch .svg-background {
-  fill: #fcfcfc;
-  transition-property: fill;
-  transition-duration: .25s;
-}
-/* line 103, ../sass/screen.scss */
-#intarsia .stitch .svg-border {
-  fill: #ccc;
-}
-/* line 106, ../sass/screen.scss */
-#intarsia .stitch:hover .svg-background {
-  fill: #ddd;
-}
+  transition: all 0.25s ease-in-out; }
+  #intarsia .stitch .svg-background {
+    fill: #fcfcfc;
+    transition-property: fill;
+    transition-duration: .25s; }
+  #intarsia .stitch .svg-border {
+    fill: #ccc; }
+  #intarsia .stitch:hover .svg-background {
+    fill: #ddd; }
 
 /* colors for paintcolors */
-/* line 113, ../sass/screen.scss */
 #intarsia .stitch.red .svg-background {
-  fill: red;
-}
-/* line 114, ../sass/screen.scss */
+  fill: red; }
 #intarsia .stitch.red .svg-border {
-  fill: #cc0000;
-}
+  fill: #cc0000; }
 
-/* line 113, ../sass/screen.scss */
 #intarsia .stitch.orange .svg-background {
-  fill: orange;
-}
-/* line 114, ../sass/screen.scss */
+  fill: orange; }
 #intarsia .stitch.orange .svg-border {
-  fill: #cc8400;
-}
+  fill: #cc8400; }
 
-/* line 113, ../sass/screen.scss */
 #intarsia .stitch.yellow .svg-background {
-  fill: yellow;
-}
-/* line 114, ../sass/screen.scss */
+  fill: yellow; }
 #intarsia .stitch.yellow .svg-border {
-  fill: #cccc00;
-}
+  fill: #cccc00; }
 
-/* line 113, ../sass/screen.scss */
 #intarsia .stitch.green .svg-background {
-  fill: green;
-}
-/* line 114, ../sass/screen.scss */
+  fill: green; }
 #intarsia .stitch.green .svg-border {
-  fill: #004d00;
-}
+  fill: #004d00; }
 
-/* line 113, ../sass/screen.scss */
 #intarsia .stitch.blue .svg-background {
-  fill: blue;
-}
-/* line 114, ../sass/screen.scss */
+  fill: blue; }
 #intarsia .stitch.blue .svg-border {
-  fill: #0000cc;
-}
+  fill: #0000cc; }
 
-/* line 113, ../sass/screen.scss */
 #intarsia .stitch.navy .svg-background {
-  fill: navy;
-}
-/* line 114, ../sass/screen.scss */
+  fill: navy; }
 #intarsia .stitch.navy .svg-border {
-  fill: #00004d;
-}
+  fill: #00004d; }
 
-/* line 113, ../sass/screen.scss */
 #intarsia .stitch.purple .svg-background {
-  fill: purple;
-}
-/* line 114, ../sass/screen.scss */
+  fill: purple; }
 #intarsia .stitch.purple .svg-border {
-  fill: #4d004d;
-}
+  fill: #4d004d; }
 
-/* line 113, ../sass/screen.scss */
 #intarsia .stitch.white .svg-background {
-  fill: white;
-}
-/* line 114, ../sass/screen.scss */
+  fill: white; }
 #intarsia .stitch.white .svg-border {
-  fill: #e6e6e6;
-}
+  fill: #e6e6e6; }
 
-/* line 113, ../sass/screen.scss */
 #intarsia .stitch.silver .svg-background {
-  fill: silver;
-}
-/* line 114, ../sass/screen.scss */
+  fill: silver; }
 #intarsia .stitch.silver .svg-border {
-  fill: #a7a7a7;
-}
+  fill: #a7a7a7; }
 
-/* line 113, ../sass/screen.scss */
-#intarsia .stitch.grey .svg-background {
-  fill: grey;
-}
-/* line 114, ../sass/screen.scss */
-#intarsia .stitch.grey .svg-border {
-  fill: #676767;
-}
+#intarsia .stitch.gray .svg-background {
+  fill: gray; }
+#intarsia .stitch.gray .svg-border {
+  fill: #676767; }
 
-/* line 113, ../sass/screen.scss */
 #intarsia .stitch.black .svg-background {
-  fill: black;
-}
-/* line 114, ../sass/screen.scss */
+  fill: black; }
 #intarsia .stitch.black .svg-border {
-  fill: black;
-}
+  fill: black; }
 
-/* line 118, ../sass/screen.scss */
 .intarsia-palette {
-  padding: 0;
-}
+  padding: 0; }
 
-/* line 122, ../sass/screen.scss */
 .intarsia-palette-color {
   position: relative;
   float: left;
   padding: 0;
   margin: 0 5px 0 0;
   list-style-type: none;
-  width: 22px;
-}
+  width: 22px; }
 
-/* line 131, ../sass/screen.scss */
 .intarsia-btn-color {
   position: relative;
   float: left;
@@ -240,13 +157,10 @@ body {
   height: 20px;
   border: 1px solid white;
   background-color: #fcfcfc;
-  -moz-box-shadow: 1px 1px 1px #dadada;
   -webkit-box-shadow: 1px 1px 1px #dadada;
+  -moz-box-shadow: 1px 1px 1px #dadada;
   box-shadow: 1px 1px 1px #dadada;
   margin: 0;
-  padding: 0;
-}
-/* line 141, ../sass/screen.scss */
-.selected > .intarsia-btn-color {
-  border-color: #888;
-}
+  padding: 0; }
+  .selected > .intarsia-btn-color {
+    border-color: #888; }

@@ -23,12 +23,12 @@ define (require) ->
         when @hex.test(color)      then 'hex'
         when @shortHex.test(color) then 'shortHex'
         when @rgb.test(color)      then 'rgb'
-        else                           'invalid'
+        else                            'invalid'
 
     # Converts short-form hex (#FFF) to full hex (#FFFFFF)
     shortHexToHex: (color) ->
       channels = color.match /[a-f\d]/gi                  # split into r,g,b channels
-      longHex = _.map channels, (val) -> "#{val}#{val}"   # duplicate channel vals
+      longHex = _.map(channels, (val) -> "#{val}#{val}")   # duplicate channel vals
       return "##{longHex.join ""}"
 
     # Converts hex string to {r,g,b} object

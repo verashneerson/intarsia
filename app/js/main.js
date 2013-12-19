@@ -26,9 +26,6 @@ require.config({
     modernizr: {
       exports: "Modernizr"
     },
-    'backbone.localStorage': {
-      deps: ['backbone']
-    },
     bootstrap: {
       deps: ['jquery']
     },

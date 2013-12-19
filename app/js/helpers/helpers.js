@@ -6,8 +6,8 @@ define(function(require) {
     return {
       darken: function(colorVal, percent) {
         var color;
-        if (percent == null) {
-          percent = percent || 10;
+        if (!percent) {
+          percent = 10;
         }
         color = new Color(colorVal);
         return color.adjust(percent).toHex();

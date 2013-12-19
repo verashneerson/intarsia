@@ -4,7 +4,7 @@ module.exports = function(grunt) {
     pkg: grunt.file.readJSON('package.json'),
     clean: ["dist/", "app/css"],
     jshint: {
-      files: ["app/scripts/**/*.js"],
+      files: ["app/js/**/*.js"],
       options: {
         boss: true,
         browser: true,
@@ -38,16 +38,16 @@ module.exports = function(grunt) {
         "domprefixes": false
       },
       "parseFiles": true,
-      "files": ['app/scripts/**/*.js', 'app/sass/**/*.scss'],
+      "files": ['app/js/**/*.js', 'app/sass/**/*.scss'],
       "matchCommunityTests": false,
       "customTests": []
     },
     requirejs: {
       release: {
         options: {
-          baseUrl: "app/scripts",
-          mainConfigFile: 'app/scripts/main.js',
-          out: 'dist/scripts/main.js',
+          baseUrl: "app/js",
+          mainConfigFile: 'app/js/main.js',
+          out: 'dist/js/main.js',
           name: 'main',
           optimize: 'uglify2',
           generateSourceMaps: true,
@@ -103,7 +103,7 @@ module.exports = function(grunt) {
           }, {
             expand: true,
             cwd: 'app/',
-            src: ['vendor/jquery/jquery.min.js', 'vendor/underscore/underscore-min.js', 'vendor/backbone/backbone-min.js', 'vendor/handlebars/handlebars.amd.min.js', 'vendor/bootstrap/dist/js/bootstrap.min.js'],
+            src: ['vendor/jquery/jquery.min.js', 'vendor/underscore/underscore-min.js', 'vendor/backbone/backbone-min.js', 'vendor/handlebars/handlebars.amd.min.js', 'vendor/bootstrap/dist/js/bootstrap.min.js', 'vendor/requirejs/require.js'],
             dest: 'dist/'
           }
         ]
@@ -112,7 +112,7 @@ module.exports = function(grunt) {
     'http-server': {
       dev: {
         root: 'app/',
-        port: 8000,
+        port: 8080,
         host: 'localhost',
         showDir: true,
         autoIndex: true,
@@ -121,7 +121,7 @@ module.exports = function(grunt) {
       },
       test: {
         root: 'test/',
-        port: 8001,
+        port: 8081,
         host: 'localhost',
         showDir: true,
         autoIndex: true,
@@ -130,7 +130,7 @@ module.exports = function(grunt) {
       },
       dist: {
         root: 'dist/',
-        port: 8002,
+        port: 8082,
         host: 'localhost',
         showDir: true,
         autoIndex: true,
@@ -140,12 +140,11 @@ module.exports = function(grunt) {
     }
   });
   grunt.loadNpmTasks('grunt-contrib-clean');
-  grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks('grunt-contrib-copy');
   grunt.loadNpmTasks('grunt-contrib-sass');
   grunt.loadNpmTasks('grunt-contrib-cssmin');
   grunt.loadNpmTasks('grunt-modernizr');
   grunt.loadNpmTasks('grunt-bbb-requirejs');
   grunt.loadNpmTasks('grunt-http-server');
-  return grunt.registerTask('default', ['clean', 'jshint', 'modernizr', 'requirejs', 'sass', 'cssmin', 'copy']);
+  return grunt.registerTask('default', ['clean', 'modernizr', 'requirejs', 'sass', 'cssmin', 'copy']);
 };
