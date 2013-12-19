@@ -7,3 +7,4 @@ define (require) ->
     options =
       baseColor: '#fcfcfc'
       vent: _.extend {}, Backbone.Events
+      hello: 'hello2'

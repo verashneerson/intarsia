@@ -1,7 +1,15 @@
 module.exports = (grunt) ->
   grunt.initConfig
     pkg: grunt.file.readJSON('package.json')
-    clean: ["dist/", "app/css"]
+    clean: ["dist/", "app/css", "app/js"]
+    coffee:
+      glob_to_multiple:
+        expand: true
+        flatten: false
+        cwd: 'app/coffee/'
+        src: ['**/*.coffee']
+        dest: 'app/js'
+        ext: '.js'
     jshint:
       files: ["app/js/**/*.js"]
       options:
@@ -147,6 +155,7 @@ module.exports = (grunt) ->
         cache: 600
 
   grunt.loadNpmTasks 'grunt-contrib-clean'
+  grunt.loadNpmTasks 'grunt-contrib-coffee'
   #grunt.loadNpmTasks 'grunt-contrib-jshint'
   grunt.loadNpmTasks 'grunt-contrib-copy'
   grunt.loadNpmTasks 'grunt-contrib-sass'
@@ -161,6 +170,7 @@ module.exports = (grunt) ->
 
   grunt.registerTask 'default', [
     'clean'
+    'coffee'
     #'jshint'
     'modernizr'
     'requirejs'

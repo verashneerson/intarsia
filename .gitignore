@@ -12,3 +12,5 @@ dist/
 node_modules/
 app/build/
 app/data/
+app/js
+app/css

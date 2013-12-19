@@ -42,7 +42,7 @@ define (require) ->
       return r: colorValues[0], g: colorValues[1], b: colorValues[2]
 
     # Adjusts individual channel value by given percentage
-    adjustChannel: (channel, percent) ->
+    adjustChannel: (channel, percent = percent || 10) ->
       newChannel = parseInt(channel * (100 - percent) / 100)
       return switch
         when newChannel > 255 then 255

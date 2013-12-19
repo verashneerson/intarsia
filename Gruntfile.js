@@ -2,9 +2,19 @@
 module.exports = function(grunt) {
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
-    clean: ["dist/", "app/css"],
+    clean: ["dist/", "app/css", "app/js_coffee"],
+    coffee: {
+      glob_to_multiple: {
+        expand: true,
+        flatten: false,
+        cwd: 'app/js/',
+        src: ['**/*.coffee'],
+        dest: 'app/js_coffee',
+        ext: '.js'
+      }
+    },
     jshint: {
-      files: ["app/js/**/*.js"],
+      files: ["app/js_coffee/**/*.js"],
       options: {
         boss: true,
         browser: true,
@@ -140,11 +150,12 @@ module.exports = function(grunt) {
     }
   });
   grunt.loadNpmTasks('grunt-contrib-clean');
+  grunt.loadNpmTasks('grunt-contrib-coffee');
   grunt.loadNpmTasks('grunt-contrib-copy');
   grunt.loadNpmTasks('grunt-contrib-sass');
   grunt.loadNpmTasks('grunt-contrib-cssmin');
   grunt.loadNpmTasks('grunt-modernizr');
   grunt.loadNpmTasks('grunt-bbb-requirejs');
   grunt.loadNpmTasks('grunt-http-server');
-  return grunt.registerTask('default', ['clean', 'modernizr', 'requirejs', 'sass', 'cssmin', 'copy']);
+  return grunt.registerTask('default', ['clean', 'coffee', 'modernizr', 'requirejs', 'sass', 'cssmin', 'copy']);
 };
